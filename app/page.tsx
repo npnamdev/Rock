@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link";
-import { BookOpen, Bot, ChartBar, ChevronRight, HelpCircle, Settings2, SquareTerminal, UserCheck } from "lucide-react";
+import { BookOpen, Bot, ChartBar, ChevronRight, HelpCircle, Settings2, SquareTerminal, UserCheck, Settings } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Separator } from "@/components/ui/separator";
@@ -89,6 +89,18 @@ const data = {
       ],
     },
   ],
+  navSetting: [
+    {
+      title: "Cài đặt",
+      url: "#",
+      icon: Settings,
+    },
+    {
+      title: "Đăng xuất",
+      url: "#",
+      icon: BookOpen,
+    },
+  ],
 };
 
 export default function Page() {
@@ -100,7 +112,7 @@ export default function Page() {
         <SidebarHeader className="px-6 h-[70px] flex justify-center border-b bg-transparent">
           <Image src="/logo.svg" width={145} height={40} alt="Picture of the author" />
         </SidebarHeader>
-        <SidebarMenu className="border-r py-4 px-3.5 h-[calc(100%-140px)] gap-1.5 overflow-auto bg-transparent">
+        <SidebarMenu className="border-r py-4 px-3.5 h-[calc(100%-170px)] gap-1.5 overflow-auto bg-transparent">
           {data.navMain.map((item) => (
             <SidebarMenuItem key={item.title}>
               {item.items.length > 0 ? (
@@ -140,8 +152,18 @@ export default function Page() {
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
-        <SidebarFooter className="px-6 h-[70px] flex justify-center border-t bg-transparent">
-          sidebar footer
+        <SidebarFooter className="px-6 flex h-[100px] justify-center border-t bg-transparent">
+          <SidebarMenu className="gap-1.5">
+            {data.navSetting.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild className="text-black font-semibold">
+                  <Link href={item.url}>
+                    <item.icon size={10} strokeWidth={1.5} /> <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
       <SidebarInset>
