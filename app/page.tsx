@@ -208,9 +208,9 @@ export default function Page() {
   const [activeTeam, setActiveTeam] = React.useState(data.teams[0])
 
   return (
-    <SidebarProvider>
+    <SidebarProvider className="text-black font-semibold">
       <Sidebar collapsible="icon">
-        <SidebarHeader>
+        <SidebarHeader className="px-2.5 bg-white">
           <SidebarMenu>
             <SidebarMenuItem>
               <DropdownMenu>
@@ -223,10 +223,10 @@ export default function Page() {
                       <activeTeam.logo className="size-4" />
                     </div>
                     <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-semibold">
+                      <span className="truncate text-black font-semibold">
                         {activeTeam.name}
                       </span>
-                      <span className="truncate text-xs">
+                      <span className="truncate text-black text-xs">
                         {activeTeam.plan}
                       </span>
                     </div>
@@ -269,7 +269,7 @@ export default function Page() {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarHeader>
-        <SidebarContent>
+        <SidebarContent className="px-2.5 bg-white">
           <SidebarGroup>
             <SidebarGroupLabel>Platform</SidebarGroupLabel>
             <SidebarMenu>
@@ -282,7 +282,7 @@ export default function Page() {
                 >
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
-                      <SidebarMenuButton tooltip={item.title}>
+                      <SidebarMenuButton tooltip={item.title} className="text-black">
                         {item.icon && <item.icon />}
                         <span>{item.title}</span>
                         <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
@@ -292,7 +292,7 @@ export default function Page() {
                       <SidebarMenuSub>
                         {item.items?.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild>
+                            <SidebarMenuSubButton asChild className="text-black">
                               <a href={subItem.url}>
                                 <span>{subItem.title}</span>
                               </a>
@@ -311,7 +311,7 @@ export default function Page() {
             <SidebarMenu>
               {data.projects.map((item) => (
                 <SidebarMenuItem key={item.name}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild className="text-black">
                     <a href={item.url}>
                       <item.icon />
                       <span>{item.name}</span>
@@ -355,7 +355,7 @@ export default function Page() {
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>
-        <SidebarFooter>
+        <SidebarFooter className="px-2.5 bg-white border-t">
           <SidebarMenu>
             <SidebarMenuItem>
               <DropdownMenu>
