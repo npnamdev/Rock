@@ -2,11 +2,12 @@
 
 import * as React from "react"
 import Link from "next/link";
-import { BookOpen, Bot, ChevronRight, Settings2, SquareTerminal } from "lucide-react";
+import { BookOpen, Bot, ChartBar, ChevronRight, HelpCircle, Settings2, SquareTerminal, UserCheck } from "lucide-react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Separator } from "@/components/ui/separator";
 import { Sidebar, SidebarFooter, SidebarHeader, SidebarInset, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarProvider } from "@/components/ui/sidebar";
+import Image from "next/image";
 
 const data = {
   navMain: [
@@ -14,7 +15,6 @@ const data = {
       title: "Bảng Điều Khiển",
       url: "#",
       icon: SquareTerminal,
-      isActive: true,
       items: [],
     },
     {
@@ -32,6 +32,7 @@ const data = {
       title: "Học Viên",
       url: "#",
       icon: Bot,
+      isActive: true,
       items: [
         { title: "Tất Cả Học Viên", url: "#" },
         { title: "Đăng Ký", url: "#" },
@@ -59,26 +60,57 @@ const data = {
         { title: "Giới Hạn", url: "#" },
       ],
     },
+    {
+      title: "Thống Kê",
+      url: "#",
+      icon: ChartBar,
+      items: [
+        { title: "Tổng Quan", url: "#" },
+        { title: "Theo Khóa Học", url: "#" },
+        { title: "Theo Học Viên", url: "#" },
+      ],
+    },
+    {
+      title: "Hỗ Trợ",
+      url: "#",
+      icon: HelpCircle,
+      items: [
+        { title: "Trung Tâm Hỗ Trợ", url: "#" },
+        { title: "Liên Hệ", url: "#" },
+      ],
+    },
+    {
+      title: "Quản Lý Người Dùng",
+      url: "#",
+      icon: UserCheck,
+      items: [
+        { title: "Danh Sách Người Dùng", url: "#" },
+        { title: "Thêm Người Dùng", url: "#" },
+      ],
+    },
   ],
 };
 
-
 export default function Page() {
+  const [openMenu, setOpenMenu] = React.useState<string | null>(null);
+
   return (
-    <SidebarProvider className="grid grid-cols-[250px_auto]">
-      <Sidebar>
-        <SidebarHeader className="px-6 h-[70px] flex justify-center border-b">
-          header
+    <SidebarProvider className="grid grid-cols-[250px_auto] bg-transparent">
+      <Sidebar className="bg-blue-500">
+        <SidebarHeader className="px-6 h-[70px] flex justify-center border-b bg-transparent">
+          <Image src="/logo.svg" width={145} height={40} alt="Picture of the author" />
         </SidebarHeader>
-        <SidebarMenu className="border-r py-4 px-3.5 h-[calc(100%-140px)]">
+        <SidebarMenu className="border-r py-4 px-3.5 h-[calc(100%-140px)] gap-1.5 overflow-auto bg-transparent">
           {data.navMain.map((item) => (
             <SidebarMenuItem key={item.title}>
               {item.items.length > 0 ? (
-                <Collapsible asChild defaultOpen={item.isActive} className="group/collapsible">
+                <Collapsible asChild open={openMenu === item.title} onOpenChange={(open) => {
+                  setOpenMenu(open ? item.title : null);
+                }} className="group/collapsible">
                   <div>
                     <CollapsibleTrigger asChild>
-                      <SidebarMenuButton tooltip={item.title} className="text-black font-medium">
-                        {item.icon && <item.icon />}
+                      <SidebarMenuButton className="text-black font-semibold">
+                        {item.icon && <item.icon className="w-auto h-auto" size={28} strokeWidth={1.5} />}
                         <span>{item.title}</span>
                         <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                       </SidebarMenuButton>
@@ -87,7 +119,7 @@ export default function Page() {
                       <SidebarMenuSub>
                         {item.items.map((subItem) => (
                           <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild className="text-black font-medium">
+                            <SidebarMenuSubButton asChild className="text-black font-semibold">
                               <Link href={subItem.url}>
                                 <span>{subItem.title}</span>
                               </Link>
@@ -99,16 +131,16 @@ export default function Page() {
                   </div>
                 </Collapsible>
               ) : (
-                <SidebarMenuButton asChild className="text-black font-medium">
+                <SidebarMenuButton asChild className="text-black font-semibold">
                   <Link href={item.url}>
-                    <item.icon /> <span>{item.title}</span>
+                    <item.icon size={10} strokeWidth={1.5} /> <span>{item.title}</span>
                   </Link>
                 </SidebarMenuButton>
               )}
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
-        <SidebarFooter className="px-6 h-[70px] flex justify-center border-t">
+        <SidebarFooter className="px-6 h-[70px] flex justify-center border-t bg-transparent">
           sidebar footer
         </SidebarFooter>
       </Sidebar>
