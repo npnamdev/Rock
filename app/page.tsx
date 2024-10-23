@@ -15,18 +15,13 @@ const data = {
   user: { name: "shadcn", email: "m@example.com", avatar: "/avatars/shadcn.jpg" },
   navMain: [
     {
-      title: "Playground",
+      title: "Statistical",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
-      items: [
-        { title: "History", url: "#" },
-        { title: "Starred", url: "#" },
-        { title: "Settings", url: "#" },
-      ],
     },
     {
-      title: "Models",
+      title: "Course Manage",
       url: "#",
       icon: Bot,
       items: [
@@ -36,7 +31,17 @@ const data = {
       ],
     },
     {
-      title: "Documentation",
+      title: "Account Manage",
+      url: "#",
+      icon: Bot,
+      items: [
+        { title: "Genesis", url: "#" },
+        { title: "Explorer", url: "#" },
+        { title: "Quantum", url: "#" },
+      ],
+    },
+    {
+      title: "Sell Manage",
       url: "#",
       icon: BookOpen,
       items: [
@@ -47,7 +52,29 @@ const data = {
       ],
     },
     {
-      title: "Settings",
+      title: "Marketing Manage",
+      url: "#",
+      icon: Settings2,
+      items: [
+        { title: "General", url: "#" },
+        { title: "Team", url: "#" },
+        { title: "Billing", url: "#" },
+        { title: "Limits", url: "#" },
+      ],
+    },
+    {
+      title: "Affiliate Manage",
+      url: "#",
+      icon: Settings2,
+      items: [
+        { title: "General", url: "#" },
+        { title: "Team", url: "#" },
+        { title: "Billing", url: "#" },
+        { title: "Limits", url: "#" },
+      ],
+    },
+    {
+      title: "Customer Support",
       url: "#",
       icon: Settings2,
       items: [
@@ -66,6 +93,13 @@ const data = {
 }
 
 export default function Page() {
+  const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null);
+
+  const handleToggle = (title: string) => {
+    // Nếu submenu đã mở, thì đóng lại, nếu không thì mở submenu mới
+    setOpenSubmenu(prev => (prev === title ? null : title));
+  };
+
   return (
     <SidebarProvider className="text-black font-semibold">
       <Sidebar collapsible="icon">
@@ -78,43 +112,55 @@ export default function Page() {
         </SidebarHeader>
         <SidebarContent className="px-2 bg-white">
           <SidebarGroup>
-            <SidebarGroupLabel className="font-bold uppercase">Platform</SidebarGroupLabel>
+            <SidebarGroupLabel className="font-bold uppercase">Overview</SidebarGroupLabel>
             <SidebarMenu>
               {data.navMain.map((item) => (
-                <Collapsible
-                  key={item.title}
-                  asChild
-                  defaultOpen={item.isActive}
-                  className="group/collapsible"
-                >
-                  <SidebarMenuItem>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton tooltip={item.title} className="text-black">
-                        {item.icon && <item.icon />}
+                item.items && item.items.length > 0 ? (
+                  <Collapsible
+                    key={item.title}
+                    asChild
+                    open={openSubmenu === item.title}
+                    onOpenChange={() => handleToggle(item.title)} 
+                  >
+                    <SidebarMenuItem>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton tooltip={item.title} className="text-black">
+                          {item.icon && <item.icon color="#2a2727" strokeWidth={1.75} />}
+                          <span>{item.title}</span>
+                          <ChevronRight className={`ml-auto transition-transform duration-150 ${openSubmenu === item.title ? 'rotate-90' : ''}`} />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.items.map((subItem) => (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton asChild className="text-black">
+                                <a href={subItem.url}>
+                                  <span>{subItem.title}</span>
+                                </a>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </SidebarMenuItem>
+                  </Collapsible>
+                ) : (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild className="text-black">
+                      <a href={item.url}>
+                        {item.icon && <item.icon color="#2a2727" strokeWidth={1.75} />}
                         <span>{item.title}</span>
-                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild className="text-black">
-                              <a href={subItem.url}>
-                                <span>{subItem.title}</span>
-                              </a>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
-                    </CollapsibleContent>
+                      </a>
+                    </SidebarMenuButton>
                   </SidebarMenuItem>
-                </Collapsible>
+                )
               ))}
             </SidebarMenu>
           </SidebarGroup>
+
           <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-            <SidebarGroupLabel className="font-bold uppercase">Projects</SidebarGroupLabel>
+            <SidebarGroupLabel className="font-bold uppercase">Settings</SidebarGroupLabel>
             <SidebarMenu>
               {data.projects.map((item) => (
                 <SidebarMenuItem key={item.name}>
@@ -173,10 +219,10 @@ export default function Page() {
                       <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                     </Avatar>
                     <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-semibold">
+                      <span className="truncate font-semibold text-black">
                         {data.user.name}
                       </span>
-                      <span className="truncate text-xs">
+                      <span className="truncate text-xs text-black">
                         {data.user.email}
                       </span>
                     </div>
@@ -242,10 +288,9 @@ export default function Page() {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarFooter>
-        <SidebarRail />
       </Sidebar>
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b">
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b sticky top-0 bg-white z-50">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1 block md:hidden" />
             <Separator orientation="vertical" className="mr-2 h-4 block md:hidden" />
@@ -274,5 +319,5 @@ export default function Page() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }
