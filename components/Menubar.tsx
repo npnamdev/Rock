@@ -8,6 +8,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
 
 const data = {
     user: { name: "shadcn", email: "m@example.com", avatar: "/avatars/shadcn.jpg" },
@@ -100,6 +101,9 @@ const data = {
 };
 
 export default function Menubar() {
+    const pathname = usePathname();
+    console.log(pathname);
+
     const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null);
 
     const handleToggle = (title: string) => {
@@ -131,7 +135,7 @@ export default function Menubar() {
                                 >
                                     <SidebarMenuItem>
                                         <CollapsibleTrigger asChild>
-                                            <SidebarMenuButton tooltip={item.title} className="text-black">
+                                            <SidebarMenuButton tooltip={item.title} className={`text-black ${pathname == item.url ? 'bg-gray-100' : ''}`}>
                                                 {item.icon && <item.icon color="#2a2727" strokeWidth={1.75} />}
                                                 <span>{item.title}</span>
                                                 <ChevronRight className={`ml-auto transition-transform duration-150 ${openSubmenu === item.title ? 'rotate-90' : ''}`} />
@@ -141,7 +145,7 @@ export default function Menubar() {
                                             <SidebarMenuSub>
                                                 {item.items.map((subItem) => (
                                                     <SidebarMenuSubItem key={subItem.title}>
-                                                        <SidebarMenuSubButton asChild className="text-black">
+                                                        <SidebarMenuSubButton asChild className={`text-black ${pathname == subItem.url ? 'bg-gray-100' : ''}`}>
                                                             <Link href={subItem.url}>
                                                                 <span>{subItem.title}</span>
                                                             </Link>
@@ -154,7 +158,7 @@ export default function Menubar() {
                                 </Collapsible>
                             ) : (
                                 <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild className="text-black">
+                                    <SidebarMenuButton asChild className={`text-black ${pathname == item.url ? 'bg-gray-100' : ''}`}>
                                         <Link href={item.url}>
                                             {item.icon && <item.icon color="#2a2727" strokeWidth={1.75} />}
                                             <span>{item.title}</span>
@@ -208,7 +212,7 @@ export default function Menubar() {
                     </SidebarMenu>
                 </SidebarGroup>
             </SidebarContent>
-            <SidebarFooter className="px-2 bg-white border-t">
+            <SidebarFooter className="px-3.5 bg-white border-t">
                 <SidebarMenu className="">
                     <SidebarMenuItem>
                         <DropdownMenu>
