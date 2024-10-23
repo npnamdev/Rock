@@ -6,13 +6,15 @@ export default function CoursesManagePage() {
     return (
         <div className="p-4">
             <Tabs defaultValue="single-plan" className="w-full">
-                <div className="flex justify-between mb-4">
-                    <TabsList className="grid w-[400px] grid-cols-3">
+                <div className="flex flex-col-reverse md:flex-row justify-between mb-4 gap-2">
+                    <TabsList className="grid max-w-[800px] grid-cols-3">
                         <TabsTrigger value="single-plan" className="font-semibold">Single Plan</TabsTrigger>
                         <TabsTrigger value="combo-plan" className="font-semibold">Combo Plan</TabsTrigger>
                         <TabsTrigger value="membership" className="font-semibold">Membership</TabsTrigger>
                     </TabsList>
-                    <Button>Add courses</Button>
+                    <div className="flex">
+                        <Button>Add courses</Button>
+                    </div>
                 </div>
                 <TabsContent value="single-plan">
                     <div className="grid auto-rows-min gap-4 md:grid-cols-1">
