@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
-import { AudioWaveform, BadgeCheck, Bell, BookOpen, Bot, ChevronRight, ChevronsUpDown, Command, CreditCard, Folder, Forward, Frame, GalleryVerticalEnd, LogOut, Map, MoreHorizontal, PieChart, Plus, Settings2, Sparkles, SquareTerminal, Trash2 } from "lucide-react";
+import { CircleHelp, BadgeCheck, Bell, BookOpen, UsersRound, ChevronRight, ChevronsUpDown, ShoppingCart, CreditCard, Folder, Forward, SlidersVertical, ChartBarDecreasing, LogOut, GitBranch, MoreHorizontal, SwatchBook, Package, Settings, Sparkles, LayoutGrid, Trash2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -16,79 +16,88 @@ const data = {
   navMain: [
     {
       title: "Statistical",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
+      url: "/manage",
+      icon: LayoutGrid,
     },
     {
-      title: "Course Manage",
-      url: "#",
-      icon: Bot,
-      items: [
-        { title: "Genesis", url: "#" },
-        { title: "Explorer", url: "#" },
-        { title: "Quantum", url: "#" },
-      ],
-    },
-    {
-      title: "Account Manage",
-      url: "#",
-      icon: Bot,
-      items: [
-        { title: "Genesis", url: "#" },
-        { title: "Explorer", url: "#" },
-        { title: "Quantum", url: "#" },
-      ],
-    },
-    {
-      title: "Sell Manage",
+      title: "Content Management",
       url: "#",
       icon: BookOpen,
       items: [
-        { title: "Introduction", url: "#" },
-        { title: "Get Started", url: "#" },
-        { title: "Tutorials", url: "#" },
-        { title: "Changelog", url: "#" },
+        { title: "Courses", url: "/courses" },
+        { title: "Quizzes", url: "/quizzes" },
+        { title: "Surveys", url: "/surveys" },
+        { title: "Access Codes", url: "/access-codes" },
+        { title: "Tags", url: "/tags" },
+        { title: "Topics", url: "/topics" },
       ],
     },
     {
-      title: "Marketing Manage",
+      title: "Account Management",
       url: "#",
-      icon: Settings2,
+      icon: UsersRound,
       items: [
-        { title: "General", url: "#" },
-        { title: "Team", url: "#" },
-        { title: "Billing", url: "#" },
-        { title: "Limits", url: "#" },
+        { title: "User Accounts", url: "/user-accounts" },
+        { title: "Roles and Permissions", url: "/roles-permissions" },
+        { title: "Account Groups", url: "/account-groups" },
       ],
     },
     {
-      title: "Affiliate Manage",
+      title: "Sales Management",
       url: "#",
-      icon: Settings2,
+      icon: ShoppingCart,
       items: [
-        { title: "General", url: "#" },
-        { title: "Team", url: "#" },
-        { title: "Billing", url: "#" },
-        { title: "Limits", url: "#" },
+        { title: "Order List", url: "/order-list" },
+        { title: "COD Management", url: "/cod-management" },
+        { title: "Process COD Orders", url: "/process-cod-orders" },
+      ],
+    },
+    {
+      title: "Marketing Management",
+      url: "#",
+      icon: ChartBarDecreasing,
+      items: [
+        { title: "Promo Codes", url: "/promo-codes" },
+        { title: "Email Marketing", url: "/email-marketing" },
+        { title: "Popups", url: "/popups" },
+      ],
+    },
+    {
+      title: "Affiliate Management",
+      url: "#",
+      icon: GitBranch,
+      items: [
+        { title: "Affiliate List", url: "/affiliate-list" },
+        { title: "Affiliate Payments", url: "/affiliate-payments" },
+      ],
+    },
+    {
+      title: "Library Management",
+      url: "#",
+      icon: SwatchBook,
+      items: [
+        { title: "Books", url: "/library/books" },
+        { title: "Articles", url: "/library/articles" },
+        { title: "Videos", url: "/library/videos" },
+        { title: "Webinars", url: "/library/webinars" },
+        { title: "Resources", url: "/library/resources" },
+        { title: "Categories", url: "/library/categories" },
       ],
     },
     {
       title: "Customer Support",
       url: "#",
-      icon: Settings2,
+      icon: CircleHelp,
       items: [
-        { title: "General", url: "#" },
-        { title: "Team", url: "#" },
-        { title: "Billing", url: "#" },
-        { title: "Limits", url: "#" },
+        { title: "Activation Code", url: "/activation-code" },
+        { title: "Transfer Code", url: "/transfer-code" },
       ],
     },
   ],
-  projects: [
-    { name: "Design Engineering", url: "#", icon: Frame },
-    { name: "Sales & Marketing", url: "#", icon: PieChart },
-    { name: "Travel", url: "#", icon: Map },
+  settings: [
+    { name: "Display Settings", url: "/display-settings", icon: SlidersVertical },        
+    { name: "System Settings", url: "/system-settings", icon: Settings },     
+    { name: "Website Resources", url: "/website-resources", icon: Package }, 
   ],
 }
 
@@ -96,7 +105,6 @@ export default function Page() {
   const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null);
 
   const handleToggle = (title: string) => {
-    // Nếu submenu đã mở, thì đóng lại, nếu không thì mở submenu mới
     setOpenSubmenu(prev => (prev === title ? null : title));
   };
 
@@ -120,7 +128,7 @@ export default function Page() {
                     key={item.title}
                     asChild
                     open={openSubmenu === item.title}
-                    onOpenChange={() => handleToggle(item.title)} 
+                    onOpenChange={() => handleToggle(item.title)}
                   >
                     <SidebarMenuItem>
                       <CollapsibleTrigger asChild>
@@ -158,15 +166,14 @@ export default function Page() {
               ))}
             </SidebarMenu>
           </SidebarGroup>
-
           <SidebarGroup className="group-data-[collapsible=icon]:hidden">
             <SidebarGroupLabel className="font-bold uppercase">Settings</SidebarGroupLabel>
             <SidebarMenu>
-              {data.projects.map((item) => (
+              {data.settings.map((item) => (
                 <SidebarMenuItem key={item.name}>
                   <SidebarMenuButton asChild className="text-black">
                     <a href={item.url}>
-                      <item.icon />
+                      <item.icon color="#2a2727" strokeWidth={1.75}/>
                       <span>{item.name}</span>
                     </a>
                   </SidebarMenuButton>
