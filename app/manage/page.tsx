@@ -3,7 +3,7 @@
 import * as React from "react";
 import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
-import { AudioWaveform, BadgeCheck, Bell, BookOpen, Bot, ChevronRight, ChevronsUpDown, Command, CreditCard, Folder, Forward, Frame, GalleryVerticalEnd, LogOut, Map, MoreHorizontal, PieChart, Plus, Settings2, Sparkles, SquareTerminal, Trash2 } from "lucide-react";
+import { CircleHelp, BadgeCheck, Bell, BookOpen, UsersRound, ChevronRight, ChevronsUpDown, ShoppingCart, CreditCard, Folder, Forward, SlidersVertical, ChartBarDecreasing, LogOut, GitBranch, MoreHorizontal, SwatchBook, Package, Settings, Sparkles, LayoutGrid, Trash2 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -15,61 +15,104 @@ const data = {
   user: { name: "shadcn", email: "m@example.com", avatar: "/avatars/shadcn.jpg" },
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
-        { title: "History", url: "#" },
-        { title: "Starred", url: "#" },
-        { title: "Settings", url: "#" },
-      ],
+      title: "Statistical",
+      url: "/manage",
+      icon: LayoutGrid,
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        { title: "Genesis", url: "#" },
-        { title: "Explorer", url: "#" },
-        { title: "Quantum", url: "#" },
-      ],
-    },
-    {
-      title: "Documentation",
+      title: "Content Management",
       url: "#",
       icon: BookOpen,
       items: [
-        { title: "Introduction", url: "#" },
-        { title: "Get Started", url: "#" },
-        { title: "Tutorials", url: "#" },
-        { title: "Changelog", url: "#" },
+        { title: "Courses", url: "/manage/courses" },
+        { title: "Quizzes", url: "/manage/quizzes" },
+        { title: "Surveys", url: "/manage/surveys" },
+        { title: "Access Codes", url: "/manage/access-codes" },
+        { title: "Tags", url: "/manage/tags" },
+        { title: "Topics", url: "/manage/topics" },
       ],
     },
     {
-      title: "Settings",
+      title: "Account Management",
       url: "#",
-      icon: Settings2,
+      icon: UsersRound,
       items: [
-        { title: "General", url: "#" },
-        { title: "Team", url: "#" },
-        { title: "Billing", url: "#" },
-        { title: "Limits", url: "#" },
+        { title: "User Accounts", url: "/manage/user-accounts" },
+        { title: "Roles and Permissions", url: "/manage/roles-permissions" },
+        { title: "Account Groups", url: "/manage/account-groups" },
+      ],
+    },
+    {
+      title: "Sales Management",
+      url: "#",
+      icon: ShoppingCart,
+      items: [
+        { title: "Order List", url: "/manage/order-list" },
+        { title: "COD Management", url: "/manage/cod-management" },
+        { title: "Process COD Orders", url: "/manage/process-cod-orders" },
+      ],
+    },
+    {
+      title: "Marketing Management",
+      url: "#",
+      icon: ChartBarDecreasing,
+      items: [
+        { title: "Promo Codes", url: "/manage/promo-codes" },
+        { title: "Email Marketing", url: "/manage/email-marketing" },
+        { title: "Popups", url: "/manage/popups" },
+      ],
+    },
+    {
+      title: "Affiliate Management",
+      url: "#",
+      icon: GitBranch,
+      items: [
+        { title: "Affiliate List", url: "/manage/affiliate-list" },
+        { title: "Affiliate Payments", url: "/manage/affiliate-payments" },
+      ],
+    },
+    {
+      title: "Library Management",
+      url: "#",
+      icon: SwatchBook,
+      items: [
+        { title: "Books", url: "/manage/library/books" },
+        { title: "Articles", url: "/manage/library/articles" },
+        { title: "Videos", url: "/manage/library/videos" },
+        { title: "Webinars", url: "/manage/library/webinars" },
+        { title: "Resources", url: "/manage/library/resources" },
+        { title: "Categories", url: "/manage/library/categories" },
+      ],
+    },
+    {
+      title: "Customer Support",
+      url: "#",
+      icon: CircleHelp,
+      items: [
+        { title: "Activation Code", url: "/manage/activation-code" },
+        { title: "Transfer Code", url: "/manage/transfer-code" },
       ],
     },
   ],
-  projects: [
-    { name: "Design Engineering", url: "#", icon: Frame },
-    { name: "Sales & Marketing", url: "#", icon: PieChart },
-    { name: "Travel", url: "#", icon: Map },
+  settings: [
+    { name: "Display Settings", url: "/manage/display-settings", icon: SlidersVertical },
+    { name: "System Settings", url: "/manage/system-settings", icon: Settings },
+    { name: "Website Resources", url: "/manage/website-resources", icon: Package },
   ],
-}
+};
+
 
 export default function ManagePage() {
+  const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null);
+
+  const handleToggle = (title: string) => {
+    setOpenSubmenu(prev => (prev === title ? null : title));
+  };
+
   return (
     <SidebarProvider className="text-black font-semibold">
       <Sidebar collapsible="icon">
-        <SidebarHeader className="px-5 bg-white pb-3 pt-5">
+        <SidebarHeader className="px-5 bg-white flex justify-center h-[65px]">
           <SidebarMenu>
             <SidebarMenuItem>
               <Image src="/logo.svg" width={155} height={40} alt="Picture of the author" />
@@ -78,49 +121,60 @@ export default function ManagePage() {
         </SidebarHeader>
         <SidebarContent className="px-2 bg-white">
           <SidebarGroup>
-            <SidebarGroupLabel className="font-bold uppercase">Platform</SidebarGroupLabel>
+            <SidebarGroupLabel className="font-bold uppercase">Overview</SidebarGroupLabel>
             <SidebarMenu>
               {data.navMain.map((item) => (
-                <Collapsible
-                  key={item.title}
-                  asChild
-                  defaultOpen={item.isActive}
-                  className="group/collapsible"
-                >
-                  <SidebarMenuItem>
-                    <CollapsibleTrigger asChild>
-                      <SidebarMenuButton tooltip={item.title} className="text-black">
-                        {item.icon && <item.icon />}
+                item.items && item.items.length > 0 ? (
+                  <Collapsible
+                    key={item.title}
+                    asChild
+                    open={openSubmenu === item.title}
+                    onOpenChange={() => handleToggle(item.title)}
+                  >
+                    <SidebarMenuItem>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton tooltip={item.title} className="text-black">
+                          {item.icon && <item.icon color="#2a2727" strokeWidth={1.75} />}
+                          <span>{item.title}</span>
+                          <ChevronRight className={`ml-auto transition-transform duration-150 ${openSubmenu === item.title ? 'rotate-90' : ''}`} />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.items.map((subItem) => (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton asChild className="text-black">
+                                <a href={subItem.url}>
+                                  <span>{subItem.title}</span>
+                                </a>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    </SidebarMenuItem>
+                  </Collapsible>
+                ) : (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild className="text-black">
+                      <a href={item.url}>
+                        {item.icon && <item.icon color="#2a2727" strokeWidth={1.75} />}
                         <span>{item.title}</span>
-                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                      </SidebarMenuButton>
-                    </CollapsibleTrigger>
-                    <CollapsibleContent>
-                      <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild className="text-black">
-                              <a href={subItem.url}>
-                                <span>{subItem.title}</span>
-                              </a>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
-                    </CollapsibleContent>
+                      </a>
+                    </SidebarMenuButton>
                   </SidebarMenuItem>
-                </Collapsible>
+                )
               ))}
             </SidebarMenu>
           </SidebarGroup>
           <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-            <SidebarGroupLabel className="font-bold uppercase">Projects</SidebarGroupLabel>
+            <SidebarGroupLabel className="font-bold uppercase">Settings</SidebarGroupLabel>
             <SidebarMenu>
-              {data.projects.map((item) => (
+              {data.settings.map((item) => (
                 <SidebarMenuItem key={item.name}>
                   <SidebarMenuButton asChild className="text-black">
                     <a href={item.url}>
-                      <item.icon />
+                      <item.icon color="#2a2727" strokeWidth={1.75} />
                       <span>{item.name}</span>
                     </a>
                   </SidebarMenuButton>
@@ -173,10 +227,10 @@ export default function ManagePage() {
                       <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                     </Avatar>
                     <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-semibold">
+                      <span className="truncate font-semibold text-black">
                         {data.user.name}
                       </span>
-                      <span className="truncate text-xs">
+                      <span className="truncate text-xs text-black">
                         {data.user.email}
                       </span>
                     </div>
@@ -242,10 +296,9 @@ export default function ManagePage() {
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarFooter>
-        <SidebarRail />
       </Sidebar>
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b">
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b sticky top-0 bg-white z-50">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1 block md:hidden" />
             <Separator orientation="vertical" className="mr-2 h-4 block md:hidden" />
@@ -274,5 +327,5 @@ export default function ManagePage() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }

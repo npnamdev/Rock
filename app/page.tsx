@@ -24,12 +24,12 @@ const data = {
       url: "#",
       icon: BookOpen,
       items: [
-        { title: "Courses", url: "/courses" },
-        { title: "Quizzes", url: "/quizzes" },
-        { title: "Surveys", url: "/surveys" },
-        { title: "Access Codes", url: "/access-codes" },
-        { title: "Tags", url: "/tags" },
-        { title: "Topics", url: "/topics" },
+        { title: "Courses", url: "/manage/courses" },
+        { title: "Quizzes", url: "/manage/quizzes" },
+        { title: "Surveys", url: "/manage/surveys" },
+        { title: "Access Codes", url: "/manage/access-codes" },
+        { title: "Tags", url: "/manage/tags" },
+        { title: "Topics", url: "/manage/topics" },
       ],
     },
     {
@@ -37,9 +37,9 @@ const data = {
       url: "#",
       icon: UsersRound,
       items: [
-        { title: "User Accounts", url: "/user-accounts" },
-        { title: "Roles and Permissions", url: "/roles-permissions" },
-        { title: "Account Groups", url: "/account-groups" },
+        { title: "User Accounts", url: "/manage/user-accounts" },
+        { title: "Roles and Permissions", url: "/manage/roles-permissions" },
+        { title: "Account Groups", url: "/manage/account-groups" },
       ],
     },
     {
@@ -47,9 +47,9 @@ const data = {
       url: "#",
       icon: ShoppingCart,
       items: [
-        { title: "Order List", url: "/order-list" },
-        { title: "COD Management", url: "/cod-management" },
-        { title: "Process COD Orders", url: "/process-cod-orders" },
+        { title: "Order List", url: "/manage/order-list" },
+        { title: "COD Management", url: "/manage/cod-management" },
+        { title: "Process COD Orders", url: "/manage/process-cod-orders" },
       ],
     },
     {
@@ -57,9 +57,9 @@ const data = {
       url: "#",
       icon: ChartBarDecreasing,
       items: [
-        { title: "Promo Codes", url: "/promo-codes" },
-        { title: "Email Marketing", url: "/email-marketing" },
-        { title: "Popups", url: "/popups" },
+        { title: "Promo Codes", url: "/manage/promo-codes" },
+        { title: "Email Marketing", url: "/manage/email-marketing" },
+        { title: "Popups", url: "/manage/popups" },
       ],
     },
     {
@@ -67,8 +67,8 @@ const data = {
       url: "#",
       icon: GitBranch,
       items: [
-        { title: "Affiliate List", url: "/affiliate-list" },
-        { title: "Affiliate Payments", url: "/affiliate-payments" },
+        { title: "Affiliate List", url: "/manage/affiliate-list" },
+        { title: "Affiliate Payments", url: "/manage/affiliate-payments" },
       ],
     },
     {
@@ -76,12 +76,12 @@ const data = {
       url: "#",
       icon: SwatchBook,
       items: [
-        { title: "Books", url: "/library/books" },
-        { title: "Articles", url: "/library/articles" },
-        { title: "Videos", url: "/library/videos" },
-        { title: "Webinars", url: "/library/webinars" },
-        { title: "Resources", url: "/library/resources" },
-        { title: "Categories", url: "/library/categories" },
+        { title: "Books", url: "/manage/library/books" },
+        { title: "Articles", url: "/manage/library/articles" },
+        { title: "Videos", url: "/manage/library/videos" },
+        { title: "Webinars", url: "/manage/library/webinars" },
+        { title: "Resources", url: "/manage/library/resources" },
+        { title: "Categories", url: "/manage/library/categories" },
       ],
     },
     {
@@ -89,17 +89,18 @@ const data = {
       url: "#",
       icon: CircleHelp,
       items: [
-        { title: "Activation Code", url: "/activation-code" },
-        { title: "Transfer Code", url: "/transfer-code" },
+        { title: "Activation Code", url: "/manage/activation-code" },
+        { title: "Transfer Code", url: "/manage/transfer-code" },
       ],
     },
   ],
   settings: [
-    { name: "Display Settings", url: "/display-settings", icon: SlidersVertical },        
-    { name: "System Settings", url: "/system-settings", icon: Settings },     
-    { name: "Website Resources", url: "/website-resources", icon: Package }, 
+    { name: "Display Settings", url: "/manage/display-settings", icon: SlidersVertical },
+    { name: "System Settings", url: "/manage/system-settings", icon: Settings },
+    { name: "Website Resources", url: "/manage/website-resources", icon: Package },
   ],
-}
+};
+
 
 export default function Page() {
   const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null);
@@ -111,7 +112,7 @@ export default function Page() {
   return (
     <SidebarProvider className="text-black font-semibold">
       <Sidebar collapsible="icon">
-        <SidebarHeader className="px-5 bg-white pb-3 pt-5">
+        <SidebarHeader className="px-5 bg-white flex justify-center h-[65px]">
           <SidebarMenu>
             <SidebarMenuItem>
               <Image src="/logo.svg" width={155} height={40} alt="Picture of the author" />
@@ -173,7 +174,7 @@ export default function Page() {
                 <SidebarMenuItem key={item.name}>
                   <SidebarMenuButton asChild className="text-black">
                     <a href={item.url}>
-                      <item.icon color="#2a2727" strokeWidth={1.75}/>
+                      <item.icon color="#2a2727" strokeWidth={1.75} />
                       <span>{item.name}</span>
                     </a>
                   </SidebarMenuButton>
