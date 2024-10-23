@@ -102,9 +102,18 @@ const data = {
 
 export default function Menubar() {
     const pathname = usePathname();
-    console.log(pathname);
-
     const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null);
+
+    React.useEffect(() => {
+        data.navMain.forEach((item) => {
+            if (item.items) {
+                const matchingItem = item.items.find((subItem) => pathname === subItem.url);
+                if (matchingItem) {
+                    setOpenSubmenu(item.title);
+                }
+            }
+        });
+    }, [pathname]);
 
     const handleToggle = (title: string) => {
         setOpenSubmenu(prev => (prev === title ? null : title));
@@ -121,7 +130,7 @@ export default function Menubar() {
                     </SidebarMenuItem>
                 </SidebarMenu>
             </SidebarHeader>
-            <SidebarContent className="px-2 bg-white">
+            <SidebarContent className="px-2 bg-white gap-0">
                 <SidebarGroup>
                     <SidebarGroupLabel className="font-bold uppercase mb-1">Overview</SidebarGroupLabel>
                     <SidebarMenu className="gap-1.5">
