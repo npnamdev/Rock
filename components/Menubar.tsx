@@ -11,7 +11,7 @@ import Link from "next/link";
 import { usePathname } from 'next/navigation'
 
 const data = {
-    user: { name: "shadcn", email: "m@example.com", avatar: "/avatars/shadcn.jpg" },
+    user: { name: "Phương Nam", email: "root@domain.com", avatar: "https://lineone.piniastudio.com/images/avatar/avatar-6.jpg" },
     navMain: [
         {
             title: "Statistical",
@@ -37,8 +37,8 @@ const data = {
             icon: UsersRound,
             items: [
                 { title: "User Accounts", url: "/manage/user-accounts" },
+                // { title: "Account Groups", url: "/manage/account-groups" },
                 { title: "Roles and Permissions", url: "/manage/roles-permissions" },
-                { title: "Account Groups", url: "/manage/account-groups" },
             ],
         },
         {
@@ -262,7 +262,7 @@ export default function Menubar() {
                                                 alt={data.user.name}
                                             />
                                             <AvatarFallback className="rounded-lg">
-                                                CN
+                                                PN
                                             </AvatarFallback>
                                         </Avatar>
                                         <div className="grid flex-1 text-left text-sm leading-tight">

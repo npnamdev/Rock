@@ -205,58 +205,58 @@ export default function Manage() {
                 <Table className="w-full">
                     <TableHeader>
                         <TableRow className="bg-gray-100 hover:bg-gray-20">
-                            <TableHead className="text-black px-4 h-[52px] font-bold pl-5">
+                            <TableHead className="text-black px-4 h-[50px] font-bold pl-5">
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={users?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[52px] font-bold text-[13px]">Full Name</TableHead>
-                            <TableHead className="text-black px-4 h-[52px] font-bold text-[13px]">Email</TableHead>
-                            <TableHead className="text-black px-4 h-[52px] font-bold text-[13px]">
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Full Name</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Email</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">
                                 <StatusFilter label="Status" options={statusOptions} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[52px] font-bold text-[13px]">
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">
                                 <StatusFilter label="Role" options={roleOptions} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[52px] font-bold text-[13px]">
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">
                                 <StatusFilter label="Date" options={dateOptions} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[52px] font-bold text-[13px]"></TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]"></TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {isLoading ? (
                             <TableRow>
-                                <TableCell colSpan={7} className="h-[52px] text-center font-medium">
+                                <TableCell colSpan={7} className="h-[50px] text-center font-medium">
                                     Đang tải...
                                 </TableCell>
                             </TableRow>
                         ) : users?.length > 0 ? (
                             users.map((user: User) => (
                                 <TableRow key={user.username}>
-                                    <TableCell className="h-[52px] px-4 cursor-pointer pl-5">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer pl-5">
                                         <Checkbox checked={selectedUsers.includes(user)} onCheckedChange={() => handleSelectUser(user)} />
                                     </TableCell>
-                                    <TableCell className="h-[52px] px-4 cursor-pointer">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer">
                                         <div className="flex items-center gap-2">
                                             <Image className="w-7 h-7 rounded-full" src="https://lineone.piniastudio.com/images/avatar/avatar-1.jpg" width={50} height={50} alt="dev" />
                                             <h3 className="font-bold text-[13px]">{user.username}</h3>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[52px] px-4 cursor-pointer">{user.email}</TableCell>
-                                    <TableCell className="h-[52px] px-4 cursor-pointer">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer">{user.email}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer">
                                         <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${user.isActive ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
                                             {user.isActive ? "Active" : "Inactive"}
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[52px] px-4 cursor-pointer">{user?.role?.name}</TableCell>
-                                    <TableCell className="h-[52px] px-4 cursor-pointer">{moment(user.createdAt).format('MMM D, YYYY')}</TableCell>
-                                    <TableCell className="h-[52px] px-4 cursor-pointer">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer">{user?.role?.name}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer">{moment(user.createdAt).format('MMM D, YYYY')}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer">
                                         <UserActionMenu options={menuOptions} userID={user?._id} />
                                     </TableCell>
                                 </TableRow>
                             ))
                         ) : (
                             <TableRow>
-                                <TableCell colSpan={7} className="h-[52px] text-center font-medium">
+                                <TableCell colSpan={7} className="h-[50px] text-center font-medium">
                                     Không có người dùng nào
                                 </TableCell>
                             </TableRow>

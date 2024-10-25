@@ -1,24 +1,3 @@
-interface Permissions {
-    getUsers: boolean;
-    getUserById: boolean;
-    createUser: boolean;
-    updateUser: boolean;
-    deleteUser: boolean;
-}
-
-interface Role {
-    _id: string;
-    name: string;
-    permissions: Permissions;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
-}
-
-interface PermissionModalProps {
-    role: Role;
-}
-
 
 interface User {
     _id: string;
@@ -30,3 +9,25 @@ interface User {
     isActive: Boolean;
     createdAt: string;
 }
+
+interface Permissions {
+    getUsers: boolean;
+    getUserById: boolean;
+    createUser: boolean;
+    updateUser: boolean;
+    deleteUser: boolean;
+    getRoles: boolean;
+    getRoleById: boolean;
+    createRole: boolean;
+    updateRole: boolean;
+    deleteRole: boolean;
+  }
+  
+  interface Role {
+    permissions: Permissions;
+    _id: string;
+    name: string;
+    createdAt: string; 
+    updatedAt: string; 
+    __v: number;
+  }
