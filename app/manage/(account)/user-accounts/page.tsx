@@ -232,24 +232,24 @@ export default function UserAccountsPage() {
                         ) : users?.length > 0 ? (
                             users.map((user: User) => (
                                 <TableRow key={user.username}>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer pl-5">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap pl-5">
                                         <Checkbox checked={selectedUsers.includes(user)} onCheckedChange={() => handleSelectUser(user)} />
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className="flex items-center gap-2">
                                             <Image className="w-7 h-7 rounded-full" src="https://lineone.piniastudio.com/images/avatar/avatar-1.jpg" width={50} height={50} alt="dev" />
                                             <h3 className="font-bold text-[13px]">{user.username}</h3>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">{user.email}</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{user.email}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${user.isActive ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
                                             {user.isActive ? "Active" : "Inactive"}
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">{user?.role?.name}</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">{moment(user.createdAt).format('MMM D, YYYY')}</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{user?.role?.name}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(user.createdAt).format('MMM D, YYYY')}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <UserActionMenu options={menuOptions} userID={user?._id} />
                                     </TableCell>
                                 </TableRow>

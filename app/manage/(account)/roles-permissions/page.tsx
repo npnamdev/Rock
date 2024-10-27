@@ -153,13 +153,13 @@ export default function RolesPermissionsPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold pl-5">
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={roles?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Role Name</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Account</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Permissions</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Type</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Creation Time</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Update Time</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]"></TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Role Name</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Account</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Permissions</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Type</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Creation Time</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Update Time</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap"></TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -172,24 +172,24 @@ export default function RolesPermissionsPage() {
                         ) : roles?.length > 0 ? (
                             roles.map((role: Role, index: number) => (
                                 <TableRow key={role._id}>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer pl-5">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap pl-5">
                                         <Checkbox checked={selectedUsers.includes(role)} onCheckedChange={() => handleSelectUser(role)} />
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className="flex items-center gap-2">
                                             <h3 className="font-bold text-[13px] capitalize">{role.name}</h3>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">20</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">46</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">20</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">46</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer">
                                         <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${index % 2 == 0 ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
                                             {index % 2 == 0 ? "System" : "Customize"}
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">{moment(role.createdAt).format('MMM D, YYYY')}</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">{moment(role.updatedAt).format('MMM D, YYYY')}</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.createdAt).format('MMM D, YYYY')}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.updatedAt).format('MMM D, YYYY')}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <UserActionMenu options={menuOptions} userID={role?._id} />
                                     </TableCell>
                                 </TableRow>
