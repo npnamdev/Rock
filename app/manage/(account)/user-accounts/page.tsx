@@ -184,9 +184,9 @@ export default function UserAccountsPage() {
     };
 
     return (
-        <div className="px-4 py-4 w-full">
+        <div className="px-4 py-2 md:py-4 w-full">
             <div className="text-black shadow rounded-md overflow-auto border select-none w-full">
-                <div className="h-[60px] px-5 md:flex justify-between items-center w-full">
+                <div className="h-[55px] md:h-[60px] px-5 md:flex justify-between items-center w-full">
                     <div className="relative hidden md:flex items-center">
                         <Search className="absolute left-3 text-gray-600" size={18} strokeWidth={1.5} />
                         <Input
