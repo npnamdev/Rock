@@ -15,7 +15,8 @@ import { Command, CommandGroup, CommandItem, CommandList } from "@/components/ui
 import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination";
 import { UserActionMenu } from "@/components/UserActionMenu";
 import { ActionBtn } from "@/components/ActionBtn";
-import { ModalCreateUser } from "@/components/ModalCreateUser";
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import PermissionsModal from "@/components/PermissionsModal";
 
 export default function RolesPermissionsPage() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -25,6 +26,8 @@ export default function RolesPermissionsPage() {
     const [value, setValue] = useState("10");
     const [searchTerm, setSearchTerm] = useState("");
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+
+    const [roleName, setRoleName] = useState('');
 
     const fetcher = async (url: string): Promise<any> => {
         try {
@@ -51,30 +54,41 @@ export default function RolesPermissionsPage() {
     );
 
     // edit
-    const handleCreateUser = async (userData: any) => {
+    const handleCreateRole = async () => {
         try {
-            const response = await axios.post("https://api.rock.io.vn/api/v1/users", userData);
+            const response = await axios.post("https://api.rock.io.vn/api/v1/roles", { name: roleName });
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/users?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
-                console.log('User created successfully:', response);
+                mutate(`https://api.rock.io.vn/api/v1/roles?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                console.log('Role created successfully:', response);
             }
         } catch (error) {
             console.error('Error:', error);
         }
-    };
+    }
 
-    // edit
-    const handleDeleteUser = async (userId: string) => {
+    const handleUpdateRole = async (roleId: string) => {
         try {
-            const response = await axios.delete(`https://api.rock.io.vn/api/v1/users/${userId}`);
+            const response = await axios.put(`https://api.rock.io.vn/api/v1/roles/${roleId}`, { name: roleName });
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/users?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
-                console.log('User deleted successfully:', response);
+                mutate(`https://api.rock.io.vn/api/v1/roles?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                console.log('Role updated successfully:', response);
             }
         } catch (error) {
-            console.error('Error deleting user:', error);
+            console.error('Error:', error);
         }
-    };
+    }
+
+    const handleDeleteRole = async (roleId: string) => {
+        try {
+            const response = await axios.delete(`https://api.rock.io.vn/api/v1/roles/${roleId}`);
+            if (response) {
+                mutate(`https://api.rock.io.vn/api/v1/roles?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                console.log('Role deleted successfully:', response);
+            }
+        } catch (error) {
+            console.error('Error deleting role:', error);
+        }
+    }
 
     const roles: Role[] = data?.data;
     const totalPages = data?.pagination?.totalPages;
@@ -124,7 +138,7 @@ export default function RolesPermissionsPage() {
     const menuOptions = [
         { icon: <ScanEye size={16} strokeWidth={1.5} />, value: "details", label: "Details", action: (userID: string) => console.log("Details clicked", userID) },
         { icon: <SquarePen size={16} strokeWidth={1.5} />, value: "edit", label: "Update", action: (userID: string) => console.log("Update clicked", userID) },
-        { icon: <Trash size={16} strokeWidth={1.5} />, value: "delete", label: "Delete", action: (userID: string) => handleDeleteUser(userID) },
+        { icon: <Trash size={16} strokeWidth={1.5} />, value: "delete", label: "Delete", action: (roleId: string) => handleDeleteRole(roleId) },
     ];
 
 
@@ -137,14 +151,30 @@ export default function RolesPermissionsPage() {
                         <Input
                             className="w-[400px] px-5 pl-10"
                             type="text"
-                            placeholder="Search user by email..."
+                            placeholder="Search role by name..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
                     <div className="flex items-center gap-2">
                         {/* <ActionBtn label="Action" options={actionOptions} selectedUsers={selectedUsers} /> */}
-                        <ModalCreateUser handleCreateUser={handleCreateUser} />
+                        <PermissionsModal roleId="670f975b407863678741f8a6" />
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <Button type="button">New Role</Button>
+                            </DialogTrigger>
+                            <DialogContent>
+                                <div className="mt-5">
+                                    <Input type="text" placeholder="Role Name" value={roleName} onChange={(event) => setRoleName(event.target.value)} />
+                                </div>
+                                <DialogFooter className="sm:justify-end">
+                                    <DialogClose asChild>
+                                        <Button type="button" variant="secondary">Close</Button>
+                                    </DialogClose>
+                                    <Button type="button" onClick={() => handleCreateRole()}>Create Role</Button>
+                                </DialogFooter>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
                 <Table className="w-full">
@@ -157,8 +187,7 @@ export default function RolesPermissionsPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Account</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Permissions</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Type</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Creation Time</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Update Time</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Date</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap"></TableHead>
                         </TableRow>
                     </TableHeader>
@@ -187,8 +216,7 @@ export default function RolesPermissionsPage() {
                                             {index % 2 == 0 ? "System" : "Customize"}
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.createdAt).format('MMM D, YYYY')}</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.updatedAt).format('MMM D, YYYY')}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.createdAt).format('lll')}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <UserActionMenu options={menuOptions} userID={role?._id} />
                                     </TableCell>
