@@ -145,8 +145,8 @@ export default function RolesPermissionsPage() {
     return (
         <div className="px-4 py-4 w-full">
             <div className="text-black shadow rounded-md overflow-auto border select-none w-full">
-                <div className="h-[60px] px-5 md:flex justify-between items-center w-full hidden">
-                    <div className="relative flex items-center">
+                <div className="h-[60px] px-5 md:flex justify-between items-center w-full">
+                    <div className="relative md:flex items-center hidden">
                         <Search className="absolute left-3 text-gray-600" size={18} strokeWidth={1.5} />
                         <Input
                             className="w-[400px] px-5 pl-10"
@@ -156,7 +156,7 @@ export default function RolesPermissionsPage() {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 h-full justify-between">
                         {/* <ActionBtn label="Action" options={actionOptions} selectedUsers={selectedUsers} /> */}
                         <PermissionsModal roleId="670f975b407863678741f8a6" />
                         <Dialog>
