@@ -37,7 +37,7 @@ const data = {
             icon: UsersRound,
             items: [
                 { title: "User Accounts", url: "/manage/user-accounts" },
-                // { title: "Account Groups", url: "/manage/account-groups" },
+                { title: "Account Groups", url: "/manage/account-groups" },
                 { title: "Roles and Permissions", url: "/manage/roles-permissions" },
             ],
         },

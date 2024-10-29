@@ -197,7 +197,7 @@ export default function UserAccountsPage() {
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
-                    <div className="flex items-center gap-2 w-full h-full justify-between">
+                    <div className="flex items-center gap-2 w-full h-full justify-between lg:justify-end">
                         <ActionBtn label="Action" options={actionOptions} selectedUsers={selectedUsers} />
                         <ModalCreateUser handleCreateUser={handleCreateUser} />
                     </div>
