@@ -14,9 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Command, CommandGroup, CommandItem, CommandList } from "@/components/ui/command";
 import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination";
 import { UserActionMenu } from "@/components/UserActionMenu";
-import { ActionBtn } from "@/components/ActionBtn";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import PermissionsModal from "@/components/PermissionsModal";
 
 export default function RolesPermissionsPage() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +25,8 @@ export default function RolesPermissionsPage() {
     const [searchTerm, setSearchTerm] = useState("");
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
 
-    const [roleName, setRoleName] = useState('');
+    const [groupName, setGroupName] = useState('');
+    const [groupDescription, setGroupDescription] = useState('');
 
     const fetcher = async (url: string): Promise<any> => {
         try {
@@ -49,46 +48,46 @@ export default function RolesPermissionsPage() {
     }, [searchTerm]);
 
     const { data, error, isLoading } = useSWR(
-        `https://api.rock.io.vn/api/v1/roles?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`,
+        `https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`,
         fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false }
     );
 
-    // edit
-    const handleCreateRole = async () => {
+    const handleCreateUserGroup = async () => {
         try {
-            const response = await axios.post("https://api.rock.io.vn/api/v1/roles", { name: roleName });
+            const response = await axios.post("https://api.rock.io.vn/api/v1/user-group", { name: groupName, description: groupDescription });
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/roles?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
-                console.log('Role created successfully:', response);
+                mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                console.log('User group created successfully:', response);
             }
         } catch (error) {
             console.error('Error:', error);
         }
     }
 
-    const handleUpdateRole = async (roleId: string) => {
+    // const handleUpdateUserGroup = async (userGroupId: string) => {
+    //     try {
+    //         const response = await axios.put(`https://api.rock.io.vn/api/v1/user-group/${userGroupId}`, { name: roleName });
+    //         if (response) {
+    //             mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+    //             console.log('User group updated successfully:', response);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // }
+
+    const handleDeleteUserGroup = async (userGroupId: string) => {
         try {
-            const response = await axios.put(`https://api.rock.io.vn/api/v1/roles/${roleId}`, { name: roleName });
+            const response = await axios.delete(`https://api.rock.io.vn/api/v1/user-group/${userGroupId}`);
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/roles?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
-                console.log('Role updated successfully:', response);
+                mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                console.log('User group deleted successfully:', response);
             }
         } catch (error) {
             console.error('Error:', error);
         }
     }
 
-    const handleDeleteRole = async (roleId: string) => {
-        try {
-            const response = await axios.delete(`https://api.rock.io.vn/api/v1/roles/${roleId}`);
-            if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/roles?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
-                console.log('Role deleted successfully:', response);
-            }
-        } catch (error) {
-            console.error('Error deleting role:', error);
-        }
-    }
 
     const roles: Role[] = data?.data;
     const totalPages = data?.pagination?.totalPages;
@@ -126,19 +125,14 @@ export default function RolesPermissionsPage() {
         { value: "30", label: "30", action: () => handleLimitChange(30) },
     ];
 
-    // const actionOptions = [
-    //     { value: "import", label: "Import", icon: <Upload size={15} strokeWidth={1.5} />, action: () => console.log("Import clicked") },
-    //     { value: "delete", label: "Delete", icon: <Trash size={15} strokeWidth={1.5} />, action: () => console.log("Delete User clicked") },
-    // ];
-
     useEffect(() => {
         console.log("Selected roles: ", selectedUsers);
     }, [selectedUsers]);
 
     const menuOptions = [
-        { icon: <ScanEye size={16} strokeWidth={1.5} />, value: "details", label: "Details", action: (userID: string) => console.log("Details clicked", userID) },
-        { icon: <SquarePen size={16} strokeWidth={1.5} />, value: "edit", label: "Update", action: (userID: string) => console.log("Update clicked", userID) },
-        { icon: <Trash size={16} strokeWidth={1.5} />, value: "delete", label: "Delete", action: (roleId: string) => handleDeleteRole(roleId) },
+        { icon: <ScanEye size={16} strokeWidth={1.5} />, value: "details", label: "Details", action: (userGroupId: string) => console.log("Details clicked", userGroupId) },
+        { icon: <SquarePen size={16} strokeWidth={1.5} />, value: "edit", label: "Update", action: (userGroupId: string) => console.log("Update clicked", userGroupId) },
+        { icon: <Trash size={16} strokeWidth={1.5} />, value: "delete", label: "Delete", action: (userGroupId: string) => handleDeleteUserGroup(userGroupId) },
     ];
 
 
@@ -157,21 +151,20 @@ export default function RolesPermissionsPage() {
                         />
                     </div>
                     <div className="flex items-center gap-2 h-full justify-between">
-                        {/* <ActionBtn label="Action" options={actionOptions} selectedUsers={selectedUsers} /> */}
-                        <PermissionsModal roleId="670f975b407863678741f8a6" />
                         <Dialog>
                             <DialogTrigger asChild>
                                 <Button type="button">New Role</Button>
                             </DialogTrigger>
                             <DialogContent>
                                 <div className="mt-5">
-                                    <Input type="text" placeholder="Role Name" value={roleName} onChange={(event) => setRoleName(event.target.value)} />
+                                    <Input type="text" placeholder="Name" value={groupName} onChange={(event) => setGroupName(event.target.value)} />
+                                    <Input type="text" placeholder="Description" value={groupDescription} onChange={(event) => setGroupDescription(event.target.value)} />
                                 </div>
                                 <DialogFooter className="sm:justify-end">
                                     <DialogClose asChild>
                                         <Button type="button" variant="secondary">Close</Button>
                                     </DialogClose>
-                                    <Button type="button" onClick={() => handleCreateRole()}>Create Role</Button>
+                                    <Button type="button" onClick={() => handleCreateUserGroup()}>Create Group</Button>
                                 </DialogFooter>
                             </DialogContent>
                         </Dialog>
@@ -183,11 +176,10 @@ export default function RolesPermissionsPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold pl-5">
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={roles?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Role Name</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Group Name</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Account</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Permissions</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Type</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Date</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Date Created</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Last Updated</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap"></TableHead>
                         </TableRow>
                     </TableHeader>
@@ -209,14 +201,9 @@ export default function RolesPermissionsPage() {
                                             <h3 className="font-bold text-[13px] capitalize">{role.name}</h3>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">20</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">46</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer">
-                                        <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${index % 2 == 0 ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
-                                            {index % 2 == 0 ? "System" : "Customize"}
-                                        </div>
-                                    </TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">78</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.createdAt).format('lll')}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.updatedAt).format('lll')}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <UserActionMenu options={menuOptions} userID={role?._id} />
                                     </TableCell>

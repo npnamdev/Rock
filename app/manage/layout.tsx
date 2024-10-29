@@ -11,7 +11,7 @@ export default function ManageLayout({ children }: { children: React.ReactNode }
                     <Menubar />
                     <SidebarInset>
                         <HeaderLayout />
-                        <div className="overflow-auto h-[calc(100vh-55px)] ">
+                        <div className="overflow-auto h-[calc(100dvh-55px)] ">
                         {children}
                         </div>
                     </SidebarInset>
