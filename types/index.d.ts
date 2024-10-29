@@ -30,4 +30,10 @@ interface Permissions {
     createdAt: string; 
     updatedAt: string; 
     __v: number;
+    description?: string;
+  }
+  interface Tags {
+    _id: string;
+    name: string;
+    description?: string;
   }

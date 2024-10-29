@@ -25,10 +25,10 @@ const data = {
             items: [
                 { title: "Courses", url: "/manage/courses" },
                 { title: "Quizzes", url: "/manage/quizzes" },
-                { title: "Surveys", url: "/manage/surveys" },
-                { title: "Access Codes", url: "/manage/access-codes" },
                 { title: "Tags", url: "/manage/tags" },
-                { title: "Topics", url: "/manage/topics" },
+                // { title: "Surveys", url: "/manage/surveys" },
+                // { title: "Access Codes", url: "/manage/access-codes" },
+                // { title: "Topics", url: "/manage/topics" },
             ],
         },
         {

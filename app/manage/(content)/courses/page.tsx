@@ -12,29 +12,30 @@ export default function CoursesManagePage() {
                         <TabsTrigger value="combo-plan" className="font-semibold">Combo Plan</TabsTrigger>
                         <TabsTrigger value="membership" className="font-semibold">Membership</TabsTrigger>
                     </TabsList>
-                    <div className="flex">
+                    <div className="hidden md:flex">
                         <Button>Add courses</Button>
                     </div>
                 </div>
                 <TabsContent value="single-plan">
-                    <div className="grid auto-rows-min gap-4 md:grid-cols-1">
-                        <Skeleton className="h-[120px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[120px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[120px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[120px] w-full aspect-video rounded-xl bg-muted" />
+                    <div className="grid auto-rows-min gap-4 grid-cols-1 md:grid-cols-2">
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
                     </div>
                 </TabsContent>
                 <TabsContent value="combo-plan">
-                    <div className="grid auto-rows-min gap-4 md:grid-cols-1">
-                        <Skeleton className="h-[120px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[120px] w-full aspect-video rounded-xl bg-muted" />
+                    <div className="grid auto-rows-min gap-4 grid-cols-1 md:grid-cols-2">
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
                     </div>
                 </TabsContent>
                 <TabsContent value="membership">
-                    <div className="grid auto-rows-min gap-4 md:grid-cols-1">
-                        <Skeleton className="h-[120px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[120px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[120px] w-full aspect-video rounded-xl bg-muted" />
+                    <div className="grid auto-rows-min gap-4 grid-cols-1 md:grid-cols-2">
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
+                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
                     </div>
                 </TabsContent>
             </Tabs>

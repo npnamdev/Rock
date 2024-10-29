@@ -145,7 +145,7 @@ export default function RolesPermissionsPage() {
                         <Input
                             className="w-[400px] px-5 pl-10"
                             type="text"
-                            placeholder="Search role by name..."
+                            placeholder="Search group by name..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -153,7 +153,7 @@ export default function RolesPermissionsPage() {
                     <div className="flex items-center gap-2 h-full justify-between">
                         <Dialog>
                             <DialogTrigger asChild>
-                                <Button type="button">New Role</Button>
+                                <Button type="button">New Group</Button>
                             </DialogTrigger>
                             <DialogContent>
                                 <div className="mt-5">
