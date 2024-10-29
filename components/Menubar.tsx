@@ -100,9 +100,21 @@ const data = {
     ],
 };
 
+import { useSidebar } from "@/components/ui/sidebar"
+
 export default function Menubar() {
     const pathname = usePathname();
     const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null);
+
+    const {
+        state,
+        open,
+        setOpen,
+        openMobile,
+        setOpenMobile,
+        isMobile,
+        toggleSidebar,
+      } = useSidebar()
 
     React.useEffect(() => {
         data.navMain.forEach((item) => {
@@ -123,7 +135,7 @@ export default function Menubar() {
         <Sidebar collapsible="icon">
             <SidebarHeader className="px-5 bg-white flex justify-center h-[65px]">
                 <SidebarMenu>
-                    <SidebarMenuItem>
+                    <SidebarMenuItem onClick={() => setOpenMobile(false)}>
                         <Link href="/manage">
                             <Image src="/logo.svg" width={155} height={40} alt="Picture of the author" />
                         </Link>
@@ -154,7 +166,7 @@ export default function Menubar() {
                                             <SidebarMenuSub>
                                                 {item.items.map((subItem) => (
                                                     <SidebarMenuSubItem key={subItem.title}>
-                                                        <SidebarMenuSubButton asChild className={`text-black ${pathname == subItem.url ? 'bg-gray-100' : ''}`}>
+                                                        <SidebarMenuSubButton onClick={() => setOpenMobile(false)} asChild className={`text-black ${pathname == subItem.url ? 'bg-gray-100' : ''}`}>
                                                             <Link href={subItem.url}>
                                                                 <span>{subItem.title}</span>
                                                             </Link>
@@ -167,7 +179,7 @@ export default function Menubar() {
                                 </Collapsible>
                             ) : (
                                 <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild className={`text-black ${pathname == item.url ? 'bg-gray-100' : ''}`}>
+                                    <SidebarMenuButton onClick={() => setOpenMobile(false)} asChild className={`text-black ${pathname == item.url ? 'bg-gray-100' : ''}`}>
                                         <Link href={item.url}>
                                             {item.icon && <item.icon color="#2a2727" strokeWidth={1.75} />}
                                             <span>{item.title}</span>
