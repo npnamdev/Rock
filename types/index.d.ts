@@ -31,6 +31,8 @@ interface Permissions {
     updatedAt: string; 
     __v: number;
     description?: string;
+    title?: string;
+    url?: string;
   }
   interface Tags {
     _id: string;

@@ -72,16 +72,16 @@ const data = {
         },
         {
             title: "Library Management",
-            url: "#",
+            url: "/manage/liblarys",
             icon: SwatchBook,
-            items: [
-                { title: "Books", url: "/manage/library/books" },
-                { title: "Articles", url: "/manage/library/articles" },
-                { title: "Videos", url: "/manage/library/videos" },
-                { title: "Webinars", url: "/manage/library/webinars" },
-                { title: "Resources", url: "/manage/library/resources" },
-                { title: "Categories", url: "/manage/library/categories" },
-            ],
+            // items: [
+            //     { title: "Books", url: "/manage/library/books" },
+            //     { title: "Articles", url: "/manage/library/articles" },
+            //     { title: "Videos", url: "/manage/library/videos" },
+            //     { title: "Webinars", url: "/manage/library/webinars" },
+            //     { title: "Resources", url: "/manage/library/resources" },
+            //     { title: "Categories", url: "/manage/library/categories" },
+            // ],
         },
         {
             title: "Customer Support",
