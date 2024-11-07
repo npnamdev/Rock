@@ -9,9 +9,9 @@ export default function ManageLayout({ children }: { children: React.ReactNode }
             <body className="overflow-hidden">
                 <SidebarProvider className="text-black font-semibold">
                     <Menubar />
-                    <SidebarInset>
+                    <SidebarInset className="bg-gray-100">
                         <HeaderLayout />
-                        <div className="overflow-auto h-[calc(100dvh-55px)] ">
+                        <div className="overflow-auto h-[calc(100dvh-60px)] ">
                         {children}
                         </div>
                     </SidebarInset>

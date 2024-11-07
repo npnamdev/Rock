@@ -10,95 +10,163 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 
+// const data = {
+//     user: { name: "Phương Nam", email: "root@domain.com", avatar: "https://lineone.piniastudio.com/images/avatar/avatar-6.jpg" },
+//     navMain: [
+//         {
+//             title: "Statistical",
+//             url: "/manage",
+//             icon: LayoutGrid,
+//         },
+//         {
+//             title: "Content Management",
+//             url: "#",
+//             icon: BookOpen,
+//             items: [
+//                 { title: "Courses", url: "/manage/courses" },
+//                 { title: "Quizzes", url: "/manage/quizzes" },
+//                 { title: "Tags", url: "/manage/tags" },
+//             ],
+//         },
+//         {
+//             title: "Account Management",
+//             url: "#",
+//             icon: UsersRound,
+//             items: [
+//                 { title: "User Accounts", url: "/manage/user-accounts" },
+//                 { title: "Account Groups", url: "/manage/account-groups" },
+//                 { title: "Roles and Permissions", url: "/manage/roles-permissions" },
+//             ],
+//         },
+//         {
+//             title: "Sales Management",
+//             url: "#",
+//             icon: ShoppingCart,
+//             items: [
+//                 { title: "Order List", url: "/manage/order-list" },
+//                 { title: "COD Management", url: "/manage/cod-management" },
+//                 { title: "Process COD Orders", url: "/manage/process-cod-orders" },
+//             ],
+//         },
+//         {
+//             title: "Marketing Management",
+//             url: "#",
+//             icon: ChartBarDecreasing,
+//             items: [
+//                 { title: "Promo Codes", url: "/manage/promo-codes" },
+//                 { title: "Email Marketing", url: "/manage/email-marketing" },
+//                 { title: "Popups", url: "/manage/popups" },
+//             ],
+//         },
+//         {
+//             title: "Affiliate Management",
+//             url: "#",
+//             icon: GitBranch,
+//             items: [
+//                 { title: "Affiliate List", url: "/manage/affiliate-list" },
+//                 { title: "Affiliate Payments", url: "/manage/affiliate-payments" },
+//             ],
+//         },
+//         {
+//             title: "Library Management",
+//             url: "/manage/liblarys",
+//             icon: SwatchBook,
+//         },
+//         {
+//             title: "Customer Support",
+//             url: "#",
+//             icon: CircleHelp,
+//             items: [
+//                 { title: "Activation Code", url: "/manage/activation-code" },
+//                 { title: "Transfer Code", url: "/manage/transfer-code" },
+//             ],
+//         },
+//     ],
+//     settings: [
+//         { name: "Display Settings", url: "/manage/display-settings", icon: SlidersVertical },
+//         { name: "System Settings", url: "/manage/system-settings", icon: Settings },
+//         { name: "Website Resources", url: "/manage/website-resources", icon: Package },
+//     ],
+// };
+
 const data = {
     user: { name: "Phương Nam", email: "root@domain.com", avatar: "https://lineone.piniastudio.com/images/avatar/avatar-6.jpg" },
     navMain: [
         {
-            title: "Statistical",
+            title: "Thống kê",
             url: "/manage",
             icon: LayoutGrid,
         },
         {
-            title: "Content Management",
+            title: "Quản lý nội dung",
             url: "#",
             icon: BookOpen,
             items: [
-                { title: "Courses", url: "/manage/courses" },
-                { title: "Quizzes", url: "/manage/quizzes" },
-                { title: "Tags", url: "/manage/tags" },
-                // { title: "Surveys", url: "/manage/surveys" },
-                // { title: "Access Codes", url: "/manage/access-codes" },
-                // { title: "Topics", url: "/manage/topics" },
+                { title: "Khóa học", url: "/manage/courses" },
+                { title: "Danh mục", url: "/manage/tags" },
             ],
         },
         {
-            title: "Account Management",
+            title: "Quản lý tài khoản",
             url: "#",
             icon: UsersRound,
             items: [
-                { title: "User Accounts", url: "/manage/user-accounts" },
-                { title: "Account Groups", url: "/manage/account-groups" },
-                { title: "Roles and Permissions", url: "/manage/roles-permissions" },
+                { title: "Tài khoản", url: "/manage/user-accounts" },
+                { title: "Nhóm tài khoản", url: "/manage/account-groups" },
+                { title: "Vai trò và phân quyền", url: "/manage/roles-permissions" },
             ],
         },
         {
-            title: "Sales Management",
+            title: "Quản lý bán hàng",
             url: "#",
             icon: ShoppingCart,
             items: [
-                { title: "Order List", url: "/manage/order-list" },
-                { title: "COD Management", url: "/manage/cod-management" },
-                { title: "Process COD Orders", url: "/manage/process-cod-orders" },
+                { title: "Danh sách đơn hàng", url: "/manage/order-list" },
+                { title: "Quản lý COD", url: "/manage/cod-management" },
+                { title: "Xử lý đơn COD", url: "/manage/process-cod-orders" },
             ],
         },
         {
-            title: "Marketing Management",
+            title: "Quản lý tiếp thị",
             url: "#",
             icon: ChartBarDecreasing,
             items: [
-                { title: "Promo Codes", url: "/manage/promo-codes" },
+                { title: "Mã khuyến mãi", url: "/manage/promo-codes" },
                 { title: "Email Marketing", url: "/manage/email-marketing" },
                 { title: "Popups", url: "/manage/popups" },
             ],
         },
         {
-            title: "Affiliate Management",
+            title: "Quản lý đại lý",
             url: "#",
             icon: GitBranch,
             items: [
-                { title: "Affiliate List", url: "/manage/affiliate-list" },
-                { title: "Affiliate Payments", url: "/manage/affiliate-payments" },
+                { title: "Danh sách đại lý", url: "/manage/affiliate-list" },
+                { title: "Thanh toán đại lý", url: "/manage/affiliate-payments" },
             ],
         },
         {
-            title: "Library Management",
+            title: "Quản lý thư viện",
             url: "/manage/liblarys",
             icon: SwatchBook,
-            // items: [
-            //     { title: "Books", url: "/manage/library/books" },
-            //     { title: "Articles", url: "/manage/library/articles" },
-            //     { title: "Videos", url: "/manage/library/videos" },
-            //     { title: "Webinars", url: "/manage/library/webinars" },
-            //     { title: "Resources", url: "/manage/library/resources" },
-            //     { title: "Categories", url: "/manage/library/categories" },
-            // ],
         },
         {
-            title: "Customer Support",
+            title: "Hỗ trợ khách hàng",
             url: "#",
             icon: CircleHelp,
             items: [
-                { title: "Activation Code", url: "/manage/activation-code" },
-                { title: "Transfer Code", url: "/manage/transfer-code" },
+                { title: "Mã kích hoạt", url: "/manage/activation-code" },
+                { title: "Mã chuyển nhượng", url: "/manage/transfer-code" },
             ],
         },
     ],
     settings: [
-        { name: "Display Settings", url: "/manage/display-settings", icon: SlidersVertical },
-        { name: "System Settings", url: "/manage/system-settings", icon: Settings },
-        { name: "Website Resources", url: "/manage/website-resources", icon: Package },
+        { name: "Cài đặt hiển thị", url: "/manage/display-settings", icon: SlidersVertical },
+        { name: "Cài đặt hệ thống", url: "/manage/system-settings", icon: Settings },
+        { name: "Tài nguyên trang web", url: "/manage/website-resources", icon: Package },
     ],
 };
+
 
 import { useSidebar } from "@/components/ui/sidebar"
 

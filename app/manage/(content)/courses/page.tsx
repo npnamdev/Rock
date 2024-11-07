@@ -1,44 +1,63 @@
-import { Skeleton } from "@/components/ui/skeleton";
+import { ComboboxDemo } from "@/components/ComboboxDemo";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Search } from "lucide-react";
+
+const courseOptions = [
+    { value: "all_courses", label: "Tất cả khóa học" },
+    { value: "free_courses", label: "Khóa học miễn phí" },
+    { value: "paid_courses", label: "Khóa học trả phí" },
+    { value: "popular_courses", label: "Khóa học phổ biến" },
+    { value: "new_courses", label: "Khóa học mới" },
+]
+
+const categoryOptions = [
+    { value: "all", label: "Tất cả danh mục" },
+    { value: "tech", label: "Công nghệ" },
+    { value: "business", label: "Kinh doanh" },
+    { value: "design", label: "Thiết kế" },
+    { value: "marketing", label: "Marketing" },
+    { value: "language", label: "Ngôn ngữ" },
+    { value: "art", label: "Nghệ thuật" },
+    { value: "science", label: "Khoa học" },
+    { value: "health", label: "Sức khỏe" },
+    { value: "finance", label: "Tài chính" },
+    { value: "education", label: "Giáo dục" },
+    { value: "sports", label: "Thể thao" },
+    { value: "music", label: "Âm nhạc" },
+    { value: "law", label: "Luật" },
+    { value: "literature", label: "Văn học" },
+    { value: "food", label: "Ẩm thực" },
+]
 
 export default function CoursesManagePage() {
+    const skeletons = Array(6).fill(null);
+
     return (
         <div className="p-4">
-            <Tabs defaultValue="single-plan" className="w-full">
-                <div className="flex flex-col-reverse md:flex-row justify-between mb-4 gap-2">
-                    <TabsList className="grid max-w-[800px] grid-cols-3">
-                        <TabsTrigger value="single-plan" className="font-semibold">Single Plan</TabsTrigger>
-                        <TabsTrigger value="combo-plan" className="font-semibold">Combo Plan</TabsTrigger>
-                        <TabsTrigger value="membership" className="font-semibold">Membership</TabsTrigger>
-                    </TabsList>
-                    <div className="hidden md:flex">
-                        <Button>Add courses</Button>
+            <div className="h-[60px] flex justify-between items-center px-4 bg-white rounded-md mb-3">
+                <div className="flex items-center gap-2">
+                    <div className="relative md:flex items-center hidden">
+                        <Search className="absolute left-3 text-gray-600" size={18} strokeWidth={1.5} />
+                        <Input
+                            className="w-[400px] px-5 pl-10"
+                            type="text"
+                            placeholder="Tìm kiếm khóa học..."
+                        />
                     </div>
+                    <ComboboxDemo data={courseOptions} optionDefault="all_courses" />
+                    <ComboboxDemo data={categoryOptions} optionDefault="all" />
                 </div>
-                <TabsContent value="single-plan">
-                    <div className="grid auto-rows-min gap-4 grid-cols-1 md:grid-cols-2">
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                    </div>
-                </TabsContent>
-                <TabsContent value="combo-plan">
-                    <div className="grid auto-rows-min gap-4 grid-cols-1 md:grid-cols-2">
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                    </div>
-                </TabsContent>
-                <TabsContent value="membership">
-                    <div className="grid auto-rows-min gap-4 grid-cols-1 md:grid-cols-2">
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                        <Skeleton className="h-[150px] w-full aspect-video rounded-xl bg-muted" />
-                    </div>
-                </TabsContent>
-            </Tabs>
+                <div className="flex items-center gap-2">
+                    <Button>Thêm khóa học</Button>
+                </div>
+            </div>
+            <div className="grid auto-rows-min gap-4 grid-cols-1 md:grid-cols-4">
+                {skeletons.map((_, index) => (
+                    <Skeleton key={index} className="h-[290px] w-full aspect-video rounded-xl bg-white" />
+                ))}
+            </div>
         </div>
     );
 }
