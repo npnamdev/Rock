@@ -46,7 +46,7 @@ export function ModalCreateUser({ handleCreateUser }: ModalCreateUserProps) {
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
                 <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
-                    <Plus size={15} color="#fff" /> New User
+                    <Plus size={15} color="#fff" /> Thêm người dùng
                 </Button>
             </DialogTrigger>
             <DialogContent className="max-w-lg h-[400px]">

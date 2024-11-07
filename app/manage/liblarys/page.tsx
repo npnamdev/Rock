@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import useSWR from "swr";
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, ChevronsUpDown, Download, ScanEye, Search, SquarePen, Trash, Upload } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, ChevronsUpDown, Download, Plus, ScanEye, Search, SquarePen, Trash, Upload } from "lucide-react";
 import axios from 'axios';
 import moment from 'moment';
 import { mutate } from "swr";
@@ -153,7 +153,9 @@ export default function LiblarysPage() {
                     <div className="flex items-center gap-2 h-full justify-between">
                         <Dialog>
                             <DialogTrigger asChild>
-                                <Button type="button">New Image</Button>
+                                <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
+                                    <Plus size={15} color="#fff" /> Thêm hình ảnh
+                                </Button>
                             </DialogTrigger>
                             <DialogContent>
                                 <div className="mt-5">
@@ -176,9 +178,9 @@ export default function LiblarysPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold pl-5">
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={roles?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Name</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Url</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Date</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tên hình ảnh</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Đường dẫn</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Thời gian</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap"></TableHead>
                         </TableRow>
                     </TableHeader>
@@ -210,16 +212,15 @@ export default function LiblarysPage() {
                         ) : (
                             <TableRow>
                                 <TableCell colSpan={7} className="h-[50px] text-center font-medium">
-                                    Không có người dùng nào
+                                    Không có hình ảnh nào
                                 </TableCell>
                             </TableRow>
                         )}
                     </TableBody>
                 </Table>
                 <div className="h-[55px] px-5 flex justify-between items-center border-t w-full">
-                    <div className="hidden md:flex flex-1 text-sm font-semibold">{selectedUsers.length} of {totalUsers} row(s) selected.</div>
+                    <div className="hidden md:flex flex-1 text-sm font-semibold">Đã chọn {selectedUsers.length} / {totalUsers} hàng</div>
                     <div className="flex gap-2 items-center justify-center text-sm font-medium mr-4">
-                        <span className="hidden md:flex">Rows per page</span>
                         <Popover open={open} onOpenChange={setOpen}>
                             <PopoverTrigger asChild>
                                 <Button variant="outline" role="combobox" aria-expanded={open} className="w-[70px] items-center justify-between font-medium px-2.5 h-8">
@@ -254,7 +255,7 @@ export default function LiblarysPage() {
                             </PopoverContent>
                         </Popover>
                     </div>
-                    <div className="hidden md:flex w-[100px] items-center justify-center text-sm font-medium mr-4">Page {currentPage} of {totalPages}</div>
+                    <div className="hidden md:flex w-[100px] items-center justify-center text-sm font-medium mr-4">Trang {currentPage} / {totalPages}</div>
                     <Pagination className="w-min mx-0">
                         <PaginationContent>
                             <PaginationItem>

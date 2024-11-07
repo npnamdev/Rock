@@ -190,15 +190,15 @@ export default function UserAccountsPage() {
                     <div className="relative hidden md:flex items-center">
                         <Search className="absolute left-3 text-gray-600" size={18} strokeWidth={1.5} />
                         <Input
-                            className="w-[400px] px-5 pl-10"
+                            className="w-[360px] px-5 pl-10"
                             type="text"
-                            placeholder="Search user by email..."
+                            placeholder="Tìm kiếm người dùng..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
                     </div>
                     <div className="flex items-center gap-2 w-full h-full justify-between lg:justify-end">
-                        <ActionBtn label="Action" options={actionOptions} selectedUsers={selectedUsers} />
+                        <ActionBtn label="Hành động" options={actionOptions} selectedUsers={selectedUsers} />
                         <ModalCreateUser handleCreateUser={handleCreateUser} />
                     </div>
                 </div>
@@ -208,16 +208,16 @@ export default function UserAccountsPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold pl-5">
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={users?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Full Name</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Tên người dùng</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Email</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">
-                                <StatusFilter label="Status" options={statusOptions} />
+                                <StatusFilter label="Trạng thái" options={statusOptions} />
                             </TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">
-                                <StatusFilter label="Role" options={roleOptions} />
+                                <StatusFilter label="Vai trò" options={roleOptions} />
                             </TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">
-                                <StatusFilter label="Date" options={dateOptions} />
+                                <StatusFilter label="Thời gian" options={dateOptions} />
                             </TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]"></TableHead>
                         </TableRow>
@@ -264,9 +264,8 @@ export default function UserAccountsPage() {
                     </TableBody>
                 </Table>
                 <div className="h-[55px] px-5 flex justify-between items-center border-t w-full">
-                    <div className="hidden md:flex flex-1 text-sm font-semibold">{selectedUsers.length} of {totalUsers} row(s) selected.</div>
+                    <div className="hidden md:flex flex-1 text-sm font-semibold">Đã chọn {selectedUsers.length} / {totalUsers} hàng</div>
                     <div className="flex gap-2 items-center justify-center text-sm font-medium mr-4">
-                        <span className="hidden md:flex">Rows per page</span>
                         <Popover open={open} onOpenChange={setOpen}>
                             <PopoverTrigger asChild>
                                 <Button variant="outline" role="combobox" aria-expanded={open} className="w-[70px] items-center justify-between font-medium px-2.5 h-8">
@@ -301,7 +300,7 @@ export default function UserAccountsPage() {
                             </PopoverContent>
                         </Popover>
                     </div>
-                    <div className="hidden md:flex w-[100px] items-center justify-center text-sm font-medium mr-4">Page {currentPage} of {totalPages}</div>
+                    <div className="hidden md:flex w-[100px] items-center justify-center text-sm font-medium mr-4">Trang {currentPage} / {totalPages}</div>
                     <Pagination className="w-min mx-0">
                         <PaginationContent>
                             <PaginationItem>

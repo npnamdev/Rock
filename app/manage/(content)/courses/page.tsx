@@ -2,7 +2,7 @@ import { ComboboxDemo } from "@/components/ComboboxDemo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 
 const courseOptions = [
     { value: "all_courses", label: "Tất cả khóa học" },
@@ -41,7 +41,7 @@ export default function CoursesManagePage() {
                     <div className="relative md:flex items-center hidden">
                         <Search className="absolute left-3 text-gray-600" size={18} strokeWidth={1.5} />
                         <Input
-                            className="w-[400px] px-5 pl-10"
+                            className="w-[340px] px-5 pl-10"
                             type="text"
                             placeholder="Tìm kiếm khóa học..."
                         />
@@ -50,7 +50,9 @@ export default function CoursesManagePage() {
                     <ComboboxDemo data={categoryOptions} optionDefault="all" />
                 </div>
                 <div className="flex items-center gap-2">
-                    <Button>Thêm khóa học</Button>
+                    <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
+                        <Plus size={15} color="#fff" /> Thêm khóa học
+                    </Button>
                 </div>
             </div>
             <div className="grid auto-rows-min gap-4 grid-cols-1 md:grid-cols-4">

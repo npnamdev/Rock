@@ -359,28 +359,28 @@ export default function Menubar() {
                                 <DropdownMenuGroup>
                                     <DropdownMenuItem>
                                         <Sparkles />
-                                        Upgrade to Pro
+                                        Nâng cấp lên Pro
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuGroup>
                                     <DropdownMenuItem>
                                         <BadgeCheck />
-                                        Account
+                                        Tài khoản
                                     </DropdownMenuItem>
                                     <DropdownMenuItem>
                                         <CreditCard />
-                                        Billing
+                                        Thanh toán
                                     </DropdownMenuItem>
                                     <DropdownMenuItem>
                                         <Bell />
-                                        Notifications
+                                        Thông báo
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>
                                     <LogOut />
-                                    Log out
+                                    Đăng xuất
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>

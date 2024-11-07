@@ -29,19 +29,19 @@ export function ActionBtn({ label, options, selectedUsers }: ActionBtnProps) {
                 <Button
                     disabled={selectedUsers.length <= 0}
                     variant="outline"
-                    className="font-semibold text-[13.5px] flex gap-2"
+                    className="font-semibold text-[13.5px] flex gap-2 px-2"
                 >
                     <Wrench size={16} strokeWidth={1.5} />
                     {label}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-min p-0">
+            <PopoverContent className="w-full p-0">
                 <Command>
                     <CommandList>
                         <CommandGroup>
                             {options?.map((status) => (
                                 <CommandItem
-                                    className="whitespace-nowrap flex items-center gap-2 font-medium cursor-pointer"
+                                    className="whitespace-nowrap flex items-center gap-2 font-medium cursor-pointer w-full"
                                     key={status.value}
                                     value={status.value}
                                     onSelect={(currentValue) => {

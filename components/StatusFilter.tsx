@@ -23,7 +23,7 @@ export function StatusFilter({ label, options }: StatusFilterProps) {
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
-                <div className="cursor-pointer flex items-center gap-1.5 hover:text-primary w-min">
+                <div className="cursor-pointer flex items-center gap-1.5 hover:text-primary w-min whitespace-nowrap">
                     {label}
                     <ArrowDownUp size={14} strokeWidth={1.75} />
                 </div>
