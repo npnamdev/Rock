@@ -103,7 +103,7 @@ const data = {
             icon: BookOpen,
             items: [
                 { title: "Khóa học", url: "/manage/courses" },
-                { title: "Danh mục", url: "/manage/tags" },
+                { title: "Danh mục", url: "/manage/categories" },
             ],
         },
         {
