@@ -9,11 +9,17 @@ import { usePathname } from 'next/navigation';
 export default function HeaderLayout() {
     const pathname = usePathname();
     const pathSegments = pathname.split('/').filter(segment => segment !== '');
-
-    const currentPage = pathSegments[pathSegments.length - 1];
+    const segmentLabels: Record<string, string> = {
+        "manage": "Quản lý",
+        "courses": "Khóa học",
+        "tags": "Danh mục",
+        "user-accounts": "Tài khoản",
+        "account-groups": "Nhóm tài khoản",
+        "roles-permissions": "Vai trò và phân quyền",
+    };
 
     const formatSegment = (segment: string) => {
-        return segment
+        return segmentLabels[segment] || segment
             .split('-')
             .map(word => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
@@ -27,18 +33,18 @@ export default function HeaderLayout() {
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
-                            <BreadcrumbLink href="/manage">Manage</BreadcrumbLink>
+                            <BreadcrumbLink href="/manage">{formatSegment("manage")}</BreadcrumbLink>
                         </BreadcrumbItem>
-                        {currentPage !== "manage" && (
-                            <>
+                        {pathSegments.slice(1).map((segment, index) => (
+                            <React.Fragment key={index}>
                                 <BreadcrumbSeparator />
                                 <BreadcrumbItem>
                                     <BreadcrumbPage>
-                                        {formatSegment(currentPage)}
+                                        {formatSegment(segment)}
                                     </BreadcrumbPage>
                                 </BreadcrumbItem>
-                            </>
-                        )}
+                            </React.Fragment>
+                        ))}
                     </BreadcrumbList>
                 </Breadcrumb>
             </div>
