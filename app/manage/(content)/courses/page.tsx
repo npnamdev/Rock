@@ -1,7 +1,17 @@
 "use client";
 
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+
 import { ComboboxDemo } from "@/components/ComboboxDemo";
 import { CourseActionMenu } from "@/components/CourseActionMenu";
+import { DrawerDemo } from "@/components/DrawerDemo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Copy, DeleteIcon, EditIcon, EllipsisVertical, Plus, ScanEye, Search, SquarePen, Trash } from "lucide-react";
@@ -130,8 +140,24 @@ export default function CoursesManagePage() {
                         <Search className="absolute left-3 text-gray-600" size={18} strokeWidth={1.5} />
                         <Input className="w-[340px] px-5 pl-10" type="text" placeholder="Tìm kiếm khóa học..." />
                     </div>
+                    <DrawerDemo />
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Button variant="outline">Edit Profile</Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-full h-full sm:rounded-none border">
+                            <DialogHeader>
+                                <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                <DialogDescription>
+                                    This action cannot be undone. This will permanently delete your account
+                                    and remove your data from our servers.
+                                </DialogDescription>
+                            </DialogHeader>
+                        </DialogContent>
+                    </Dialog>
+
                     <ComboboxDemo data={courseOptions} optionDefault="all_courses" />
-                    <ComboboxDemo data={categoryOptions} optionDefault="all" />
+                    {/* <ComboboxDemo data={categoryOptions} optionDefault="all" /> */}
                 </div>
                 <div className="flex items-center gap-2">
                     <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
