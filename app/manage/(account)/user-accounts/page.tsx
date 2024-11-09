@@ -208,7 +208,7 @@ export default function UserAccountsPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold pl-5">
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={users?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Tên người dùng</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tên người dùng</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">Email</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px]">
                                 <StatusFilter label="Trạng thái" options={statusOptions} />
