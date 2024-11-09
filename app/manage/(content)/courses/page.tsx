@@ -169,15 +169,15 @@ export default function CoursesManagePage() {
                 {courses.map((course) => (
                     <div
                         key={course.id}
-                        className="bg-white grid cursor-pointer grid-cols-[175px_auto_60px] items-center gap-2 rounded-md border shadow-lg"
+                        className="bg-white grid cursor-pointer grid-cols-[150px_auto_60px] md:grid-cols-[175px_auto_60px] items-center gap-2 rounded-md border shadow-md md:shadow-lg"
                     >
                         <div className="m-2.5">
                             <img className="w-full rounded-lg shadow" src={course.imageUrl} alt={course.title} />
                         </div>
 
                         <div className="flex flex-col gap-1.5 text-sm">
-                            <h5 className="m-0 font-bold">{course.title}</h5>
-                            <p className="m-0 line-clamp-2 text-gray-500">{course.description}</p>
+                            <h5 className="m-0 font-bold line-clamp-1">{course.title}</h5>
+                            <p className="m-0 line-clamp-1 md:line-clamp-2 text-gray-500">{course.description}</p>
                             <p className="m-0">{course.price}</p>
                         </div>
 
