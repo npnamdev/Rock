@@ -134,7 +134,7 @@ export default function CoursesManagePage() {
 
     return (
         <div className="p-4">
-            <div className="h-[60px] flex justify-between items-center px-4 bg-white rounded-md mb-3">
+            <div className="h-[60px] flex justify-between items-center px-4 bg-white rounded-md mb-3 shadow">
                 <div className="flex items-center gap-2">
                     <div className="relative md:flex items-center hidden">
                         <Search className="absolute left-3 text-gray-600" size={18} strokeWidth={1.5} />
@@ -165,11 +165,11 @@ export default function CoursesManagePage() {
                     </Button>
                 </div>
             </div>
-            <div className="grid auto-rows-min gap-4 grid-cols-1 md:grid-cols-2">
+            <div className="grid auto-rows-min gap-3 md:gap-4 grid-cols-1 md:grid-cols-2">
                 {courses.map((course) => (
                     <div
                         key={course.id}
-                        className="bg-white grid cursor-pointer grid-cols-[150px_auto_60px] md:grid-cols-[175px_auto_60px] items-center gap-2 rounded-md border shadow-md md:shadow-lg"
+                        className="bg-white grid cursor-pointer grid-cols-[150px_auto_60px] md:grid-cols-[175px_auto_60px] items-center gap-2 rounded-md border shadow md:shadow-lg"
                     >
                         <div className="m-2.5">
                             <img className="w-full rounded-lg shadow" src={course.imageUrl} alt={course.title} />
