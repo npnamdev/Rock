@@ -143,7 +143,7 @@ export default function CoursesManagePage() {
                     <DrawerDemo />
                     <Dialog>
                         <DialogTrigger asChild>
-                            <Button variant="outline">Edit Profile</Button>
+                            <Button variant="outline">Edit</Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-full h-full sm:rounded-none border">
                             <DialogHeader>
@@ -161,7 +161,7 @@ export default function CoursesManagePage() {
                 </div>
                 <div className="flex items-center gap-2">
                     <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
-                        <Plus size={15} color="#fff" /> Thêm khóa học
+                        <Plus size={15} color="#fff" /> <span className="hidden md:flex"> Thêm khóa học </span> 
                     </Button>
                 </div>
             </div>
