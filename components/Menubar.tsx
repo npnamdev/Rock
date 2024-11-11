@@ -93,31 +93,31 @@ const data = {
     user: { name: "Phương Nam", email: "root@domain.com", avatar: "https://lineone.piniastudio.com/images/avatar/avatar-6.jpg" },
     navMain: [
         {
-            title: "Thống kê",
+            title: "Thống kê & Báo cáo",
             url: "/manage",
             icon: LayoutGrid,
         },
         {
-            title: "Quản lý nội dung",
+            title: "Quản lý khoá học",
             url: "#",
             icon: BookOpen,
             items: [
-                { title: "Khóa học", url: "/manage/courses" },
-                { title: "Danh mục", url: "/manage/categories" },
+                { title: "Danh sách khóa học", url: "/manage/courses" },
+                { title: "Danh mục khoá học", url: "/manage/categories" },
             ],
         },
         {
-            title: "Quản lý tài khoản",
+            title: "Quản lý người dùng",
             url: "#",
             icon: UsersRound,
             items: [
-                { title: "Tài khoản", url: "/manage/user-accounts" },
-                { title: "Nhóm tài khoản", url: "/manage/account-groups" },
+                { title: "Danh sách người dùng", url: "/manage/user-accounts" },
+                { title: "Nhóm người dùng", url: "/manage/account-groups" },
                 { title: "Vai trò và phân quyền", url: "/manage/roles-permissions" },
             ],
         },
         {
-            title: "Quản lý bán hàng",
+            title: "Quản lý doanh thu",
             url: "#",
             icon: ShoppingCart,
             items: [
@@ -151,7 +151,7 @@ const data = {
             icon: SwatchBook,
         },
         {
-            title: "Hỗ trợ khách hàng",
+            title: "Trung tâm hỗ trợ",
             url: "#",
             icon: CircleHelp,
             items: [
