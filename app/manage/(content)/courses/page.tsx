@@ -134,7 +134,7 @@ export default function CoursesManagePage() {
 
 
     return (
-        <div className="p-4">
+        <div className="py-2 md:py-4 px-4">
             <div className="h-[60px] flex justify-between items-center px-4 bg-white rounded-md mb-3 shadow">
                 <div className="flex items-center gap-2">
                     <div className="relative md:flex items-center hidden">
