@@ -239,7 +239,7 @@ export default function PromoCodesPage() {
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap"> {formatCurrency(role.discountAmount)} </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${role.isActive ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
-                                            {role.isActive ? "Active" : "Inactive"}
+                                            {role.isActive ? "Hoạt động" : "Không hoạt động"}
                                         </div>
                                     </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
