@@ -22,7 +22,7 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-  } from "@/components/ui/sheet"
+} from "@/components/ui/sheet"
 
 export default function PromoCodesPage() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -162,7 +162,7 @@ export default function PromoCodesPage() {
                         />
                     </div>
                     <div className="flex items-center gap-2 h-full justify-between">
-                        <Sheet >
+                        <Sheet>
                             <SheetTrigger asChild className="flex md:hidden">
                                 <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
                                     <Plus size={15} color="#fff" /> Tạo mã khuyến mãi
@@ -170,33 +170,35 @@ export default function PromoCodesPage() {
                             </SheetTrigger>
                             <SheetContent side={"top"}>
                                 <SheetHeader>
-                                <SheetTitle>Are you absolutely sure?</SheetTitle>
-                                <div className="h-[200px]">
-                                    Content
-                                </div>
+                                    <SheetTitle>Are you absolutely sure?</SheetTitle>
+                                    <div className="h-[200px]">
+                                        Content
+                                    </div>
                                 </SheetHeader>
                             </SheetContent>
                         </Sheet>
 
-                        <Dialog>
-                            <DialogTrigger asChild className="hidden md:flex">
-                                <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
-                                    <Plus size={15} color="#fff" /> Tạo mã khuyến mãi
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <div className="mt-5">
-                                    <Input type="text" placeholder="Name" value={groupName} onChange={(event) => setGroupName(event.target.value)} />
-                                    <Input type="text" placeholder="Description" value={groupDescription} onChange={(event) => setGroupDescription(event.target.value)} />
-                                </div>
-                                <DialogFooter className="sm:justify-end">
-                                    <DialogClose asChild>
-                                        <Button type="button" variant="secondary">Close</Button>
-                                    </DialogClose>
-                                    <Button type="button" onClick={() => handleCreateUserGroup()}>Create Group</Button>
-                                </DialogFooter>
-                            </DialogContent>
-                        </Dialog>
+                        <div className="hidden md:flex">
+                            <Dialog>
+                                <DialogTrigger asChild >
+                                    <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
+                                        <Plus size={15} color="#fff" /> Tạo mã khuyến mãi
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <div className="mt-5">
+                                        <Input type="text" placeholder="Name" value={groupName} onChange={(event) => setGroupName(event.target.value)} />
+                                        <Input type="text" placeholder="Description" value={groupDescription} onChange={(event) => setGroupDescription(event.target.value)} />
+                                    </div>
+                                    <DialogFooter className="sm:justify-end">
+                                        <DialogClose asChild>
+                                            <Button type="button" variant="secondary">Close</Button>
+                                        </DialogClose>
+                                        <Button type="button" onClick={() => handleCreateUserGroup()}>Create Group</Button>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+                        </div>
                     </div>
                 </div>
                 <Table className="w-full">
