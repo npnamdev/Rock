@@ -10,85 +10,6 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 
-// const data = {
-//     user: { name: "Phương Nam", email: "root@domain.com", avatar: "https://lineone.piniastudio.com/images/avatar/avatar-6.jpg" },
-//     navMain: [
-//         {
-//             title: "Statistical",
-//             url: "/manage",
-//             icon: LayoutGrid,
-//         },
-//         {
-//             title: "Content Management",
-//             url: "#",
-//             icon: BookOpen,
-//             items: [
-//                 { title: "Courses", url: "/manage/courses" },
-//                 { title: "Quizzes", url: "/manage/quizzes" },
-//                 { title: "Tags", url: "/manage/tags" },
-//             ],
-//         },
-//         {
-//             title: "Account Management",
-//             url: "#",
-//             icon: UsersRound,
-//             items: [
-//                 { title: "User Accounts", url: "/manage/user-accounts" },
-//                 { title: "Account Groups", url: "/manage/account-groups" },
-//                 { title: "Roles and Permissions", url: "/manage/roles-permissions" },
-//             ],
-//         },
-//         {
-//             title: "Sales Management",
-//             url: "#",
-//             icon: ShoppingCart,
-//             items: [
-//                 { title: "Order List", url: "/manage/order-list" },
-//                 { title: "COD Management", url: "/manage/cod-management" },
-//                 { title: "Process COD Orders", url: "/manage/process-cod-orders" },
-//             ],
-//         },
-//         {
-//             title: "Marketing Management",
-//             url: "#",
-//             icon: ChartBarDecreasing,
-//             items: [
-//                 { title: "Promo Codes", url: "/manage/promo-codes" },
-//                 { title: "Email Marketing", url: "/manage/email-marketing" },
-//                 { title: "Popups", url: "/manage/popups" },
-//             ],
-//         },
-//         {
-//             title: "Affiliate Management",
-//             url: "#",
-//             icon: GitBranch,
-//             items: [
-//                 { title: "Affiliate List", url: "/manage/affiliate-list" },
-//                 { title: "Affiliate Payments", url: "/manage/affiliate-payments" },
-//             ],
-//         },
-//         {
-//             title: "Library Management",
-//             url: "/manage/liblarys",
-//             icon: SwatchBook,
-//         },
-//         {
-//             title: "Customer Support",
-//             url: "#",
-//             icon: CircleHelp,
-//             items: [
-//                 { title: "Activation Code", url: "/manage/activation-code" },
-//                 { title: "Transfer Code", url: "/manage/transfer-code" },
-//             ],
-//         },
-//     ],
-//     settings: [
-//         { name: "Display Settings", url: "/manage/display-settings", icon: SlidersVertical },
-//         { name: "System Settings", url: "/manage/system-settings", icon: Settings },
-//         { name: "Website Resources", url: "/manage/website-resources", icon: Package },
-//     ],
-// };
-
 const data = {
     user: { name: "Phương Nam", email: "root@domain.com", avatar: "https://lineone.piniastudio.com/images/avatar/avatar-6.jpg" },
     navMain: [
@@ -104,7 +25,8 @@ const data = {
             items: [
                 { title: "Danh sách khóa học", url: "/manage/courses" },
                 { title: "Danh mục khoá học", url: "/manage/categories" },
-                { title: "Chủ đề khoá học", url: "/manage/categories" },
+                { title: "Thẻ khoá học", url: "/manage/tags" },
+                 { title: "Mã kích hoạt khoá học", url: "/manage/activate-course" },
             ],
         },
         {
