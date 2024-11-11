@@ -104,6 +104,7 @@ const data = {
             items: [
                 { title: "Danh sách khóa học", url: "/manage/courses" },
                 { title: "Danh mục khoá học", url: "/manage/categories" },
+                { title: "Chủ đề khoá học", url: "/manage/categories" },
             ],
         },
         {
