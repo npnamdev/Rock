@@ -132,8 +132,8 @@ const data = {
             icon: ChartBarDecreasing,
             items: [
                 { title: "Mã khuyến mãi", url: "/manage/promo-codes" },
-                { title: "Email Marketing", url: "/manage/email-marketing" },
-                { title: "Popups", url: "/manage/popups" },
+                { title: "Chiến dịch Email", url: "/manage/email-marketing" },
+                { title: "Cửa Sổ Pop-up", url: "/manage/popups" },
             ],
         },
         {
