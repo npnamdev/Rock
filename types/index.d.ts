@@ -55,3 +55,19 @@ interface Permissions {
     updatedAt: string; // ISO 8601 date string
     __v: number;
   }
+
+  interface ImageMetadata {
+    size: number;
+    format: string;
+    width: number;
+    height: number;
+  }
+  
+  interface ImageData {
+    metadata: ImageMetadata;
+    _id: string;
+    title: string;
+    url: string;
+    public_id: string;
+    __v: number;
+  }

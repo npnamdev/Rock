@@ -15,6 +15,14 @@ import { Command, CommandGroup, CommandItem, CommandList } from "@/components/ui
 import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination";
 import { UserActionMenu } from "@/components/UserActionMenu";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+  } from "@/components/ui/sheet"
 
 export default function PromoCodesPage() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -137,9 +145,7 @@ export default function PromoCodesPage() {
 
     function formatCurrency(amount: number): string {
         return new Intl.NumberFormat('vi-VN').format(amount);
-      }
-      
-
+    }
 
     return (
         <div className="px-4 py-2 md:py-4 w-full">
@@ -156,8 +162,24 @@ export default function PromoCodesPage() {
                         />
                     </div>
                     <div className="flex items-center gap-2 h-full justify-between">
+                        <Sheet >
+                            <SheetTrigger asChild className="flex md:hidden">
+                                <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
+                                    <Plus size={15} color="#fff" /> Tạo mã khuyến mãi
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side={"top"}>
+                                <SheetHeader>
+                                <SheetTitle>Are you absolutely sure?</SheetTitle>
+                                <div className="h-[200px]">
+                                    Content
+                                </div>
+                                </SheetHeader>
+                            </SheetContent>
+                        </Sheet>
+
                         <Dialog>
-                            <DialogTrigger asChild>
+                            <DialogTrigger asChild className="hidden md:flex">
                                 <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
                                     <Plus size={15} color="#fff" /> Tạo mã khuyến mãi
                                 </Button>
@@ -186,9 +208,9 @@ export default function PromoCodesPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Mã</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tên chương trình</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Giá trị</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Trạng thái</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Hiệu lực</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Hết hạn</TableHead>
-                            {/* <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tình trạng</TableHead> */}
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Giới hạn</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap"></TableHead>
                         </TableRow>
@@ -213,6 +235,11 @@ export default function PromoCodesPage() {
                                     </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{role.name}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap"> {formatCurrency(role.discountAmount)} </TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
+                                        <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${role.isActive ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
+                                            {role.isActive ? "Active" : "Inactive"}
+                                        </div>
+                                    </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         {moment(role.startDate).subtract(10, 'days').calendar()}
                                     </TableCell>

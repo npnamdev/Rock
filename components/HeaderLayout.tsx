@@ -16,6 +16,9 @@ export default function HeaderLayout() {
         "user-accounts": "Tài khoản",
         "account-groups": "Nhóm tài khoản",
         "roles-permissions": "Vai trò và phân quyền",
+        "promo-codes": "Mã khuyến mãi",
+        "email-marketing": "Email Marketing",
+        "popups": "Popups",
     };
 
     const formatSegment = (segment: string) => {

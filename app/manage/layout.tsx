@@ -2,6 +2,7 @@ import * as React from "react";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import Menubar from "@/components/Menubar";
 import HeaderLayout from "@/components/HeaderLayout";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function ManageLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -16,6 +17,7 @@ export default function ManageLayout({ children }: { children: React.ReactNode }
                         </div>
                     </SidebarInset>
                 </SidebarProvider>
+                <Toaster />
             </body>
         </html>
     )

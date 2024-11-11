@@ -15,10 +15,13 @@ import { Command, CommandGroup, CommandItem, CommandList } from "@/components/ui
 import { Pagination, PaginationContent, PaginationItem } from "@/components/ui/pagination";
 import { UserActionMenu } from "@/components/UserActionMenu";
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import Image from "next/image";
+import { filesize } from "filesize";
+
 
 export default function LiblarysPage() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedUsers, setSelectedUsers] = useState<Role[]>([]);
+    const [selectedUsers, setSelectedUsers] = useState<ImageData[]>([]);
     const [limit, setLimit] = useState(10);
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("10");
@@ -54,9 +57,9 @@ export default function LiblarysPage() {
 
     const handleCreateUserGroup = async () => {
         try {
-            const response = await axios.post("https://api.rock.io.vn/api/v1/user-group", { name: groupName, description: groupDescription });
+            const response = await axios.post("https://api.rock.io.vn/api/v1/images", { name: groupName, description: groupDescription });
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                mutate(`https://api.rock.io.vn/api/v1/images?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
                 console.log('User group created successfully:', response);
             }
         } catch (error) {
@@ -64,23 +67,12 @@ export default function LiblarysPage() {
         }
     }
 
-    // const handleUpdateUserGroup = async (userGroupId: string) => {
-    //     try {
-    //         const response = await axios.put(`https://api.rock.io.vn/api/v1/user-group/${userGroupId}`, { name: roleName });
-    //         if (response) {
-    //             mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
-    //             console.log('User group updated successfully:', response);
-    //         }
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // }
 
     const handleDeleteUserGroup = async (userGroupId: string) => {
         try {
-            const response = await axios.delete(`https://api.rock.io.vn/api/v1/user-group/${userGroupId}`);
+            const response = await axios.delete(`https://api.rock.io.vn/api/v1/images/${userGroupId}`);
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                mutate(`https://api.rock.io.vn/api/v1/images?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
                 console.log('User group deleted successfully:', response);
             }
         } catch (error) {
@@ -89,7 +81,7 @@ export default function LiblarysPage() {
     }
 
 
-    const roles: Role[] = data?.data;
+    const roles: ImageData[] = data?.data;
     const totalPages = data?.pagination?.totalPages;
     const totalUsers = data?.pagination?.totalUsers;
 
@@ -145,7 +137,7 @@ export default function LiblarysPage() {
                         <Input
                             className="w-[400px] px-5 pl-10"
                             type="text"
-                            placeholder="Search tags by name..."
+                            placeholder="Tìm kiếm hình ảnh..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -179,8 +171,9 @@ export default function LiblarysPage() {
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={roles?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tên hình ảnh</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Đường dẫn</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Thời gian</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Kích thước</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Ngày tạo</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Ngày cập nhật</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap"></TableHead>
                         </TableRow>
                     </TableHeader>
@@ -192,18 +185,21 @@ export default function LiblarysPage() {
                                 </TableCell>
                             </TableRow>
                         ) : roles?.length > 0 ? (
-                            roles.map((role: Role, index: number) => (
+                            roles.map((role: ImageData, index: number) => (
                                 <TableRow key={role._id}>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap pl-5">
                                         <Checkbox checked={selectedUsers.includes(role)} onCheckedChange={() => handleSelectUser(role)} />
                                     </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className="flex items-center gap-2">
-                                            <h3 className="font-bold text-[13px] capitalize">{role.title}</h3>
+                                            <Image className="w-[30px] rounded-lg shadow" src={role.url ?? ""} width={180} height={120} alt="demo" />
+                                            <h3 className="font-bold text-[13px] capitalize">{role.public_id}</h3>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap"><span className="w-[350px] line-clamp-1">{role.url}</span></TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.createdAt).format('lll')}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap"> {filesize(role.metadata.size)} </TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">30/08/2022</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">11/01/2024</TableCell>
+                                    {/* <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.createdAt).subtract(10, 'days').calendar()}</TableCell> */}
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <UserActionMenu options={menuOptions} userID={role?._id} />
                                     </TableCell>
