@@ -127,7 +127,7 @@ const data = {
             ],
         },
         {
-            title: "Chiến dịch tiếp thị",
+            title: "Chiến dịch quảng cáo",
             url: "#",
             icon: ChartBarDecreasing,
             items: [
