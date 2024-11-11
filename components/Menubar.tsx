@@ -127,7 +127,7 @@ const data = {
             ],
         },
         {
-            title: "Quản lý tiếp thị",
+            title: "Chiến dịch tiếp thị",
             url: "#",
             icon: ChartBarDecreasing,
             items: [
@@ -137,7 +137,7 @@ const data = {
             ],
         },
         {
-            title: "Quản lý đại lý",
+            title: "Tiếp thị liên kết",
             url: "#",
             icon: GitBranch,
             items: [
