@@ -39,3 +39,19 @@ interface Permissions {
     name: string;
     description?: string;
   }
+
+  interface Promotion {
+    _id: string;
+    code: string;
+    name: string;
+    isActive: boolean;
+    usageLimit: number;
+    startDate: string; // ISO 8601 date string
+    endDate: string; // ISO 8601 date string
+    promotionType: "SPECIFIC_COURSES" | "ALL_COURSES" | string; // you can extend this if needed
+    discountAmount: number;
+    selectedCourses: string[]; // Array of course IDs
+    createdAt: string; // ISO 8601 date string
+    updatedAt: string; // ISO 8601 date string
+    __v: number;
+  }
