@@ -11,15 +11,15 @@ export default function HeaderLayout() {
     const pathSegments = pathname.split('/').filter(segment => segment !== '');
     const segmentLabels: Record<string, string> = {
         "manage": "Quản lý",
-        "courses": "Khóa học",
-        "categories": "Danh mục",
-        "user-accounts": "Tài khoản",
-        "account-groups": "Nhóm tài khoản",
+        "courses": "Danh sách khóa học",
+        "categories": "Danh mục khoá học",
+        "user-accounts": "Danh sách người dùng",
+        "account-groups": "Nhóm người dùng",
         "roles-permissions": "Vai trò và phân quyền",
         "promo-codes": "Mã khuyến mãi",
         "email-marketing": "Chiến dịch Email",
         "popups": "Cửa Sổ Pop-up",
-        "liblarys": "Thư viện",
+        "liblarys": "Quản lý thư viện",
     };
 
     const formatSegment = (segment: string) => {
