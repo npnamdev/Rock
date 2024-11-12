@@ -3,10 +3,12 @@ import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import Menubar from "@/components/Menubar";
 import HeaderLayout from "@/components/HeaderLayout";
 import { Toaster } from "@/components/ui/sonner";
+import { Nunito } from "next/font/google";
+const nunito = Nunito({ subsets: ["latin"] });
 
 export default function ManageLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
+        <html className={nunito.className} lang="en">
             <body className="overflow-hidden">
                 <SidebarProvider className="text-black font-semibold">
                     <Menubar />
