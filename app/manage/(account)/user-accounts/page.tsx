@@ -244,10 +244,16 @@ export default function UserAccountsPage() {
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{user.email}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${user.isActive ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
-                                            {user.isActive ? "Active" : "Inactive"}
+                                            {user.isActive ? "Hoạt động" : "Không hoạt động"}
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{user?.role?.name}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
+                          {user?.role?.name === 'admin'
+        ? 'Quản trị viên'
+        : user?.role?.name === 'user'
+        ? 'Người dùng'
+        : user?.role?.name}
+                                      </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(user.createdAt).subtract(10, 'days').calendar()}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <UserActionMenu options={menuOptions} userID={user?._id} />
