@@ -154,7 +154,7 @@ export default function ContentTagPage() {
                         <Dialog>
                             <DialogTrigger asChild>
                                 <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
-                                    <Plus size={15} color="#fff" /> Thêm thẻ mới
+                                    <Plus size={15} color="#fff" /> Tạo thẻ mới
                                 </Button>
                             </DialogTrigger>
                             <DialogContent>

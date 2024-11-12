@@ -132,7 +132,7 @@ export default function ContentTagPage() {
                         <Input
                             className="w-[360px] px-5 pl-10"
                             type="text"
-                            placeholder="Tìm kiếm danh mục..."
+                            placeholder="Tìm kiếm mã kích hoạt..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -141,7 +141,7 @@ export default function ContentTagPage() {
                         <Dialog>
                             <DialogTrigger asChild>
                                 <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
-                                    <Plus size={15} color="#fff" /> Thêm danh mục
+                                    <Plus size={15} color="#fff" /> Tạo mã kích hoạt
                                 </Button>
                             </DialogTrigger>
                             <DialogContent>
@@ -166,10 +166,11 @@ export default function ContentTagPage() {
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={roles?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Mã kích hoạt</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Bắt đầu</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Kết thúc</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Trạng thái</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Số lượng</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tình trạng</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Trạng thái</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Bắt đầu</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Hết hạn</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap"></TableHead>
                         </TableRow>
                     </TableHeader>
@@ -191,14 +192,15 @@ export default function ContentTagPage() {
                                             <h3 className="font-bold text-[13px] capitalize">{role.code}</h3>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.startTime).subtract(10, 'days').calendar()}</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.endTime).subtract(10, 'days').calendar()}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{role.courseAccessDuration}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{role.isUsed ? "Đã sử dụng" : "Chưa sử dụng"}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${role.status ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
                                             {role.status ? "Hoạt động" : "Không hoạt động"}
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{role.isUsed ? "Đã sử dụng" : "Chưa sử dụng"}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.startTime).subtract(10, 'days').calendar()}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.endTime).subtract(10, 'days').calendar()}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <UserActionMenu options={menuOptions} userID={role?._id} />
                                     </TableCell>
