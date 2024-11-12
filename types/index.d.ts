@@ -71,3 +71,31 @@ interface Permissions {
     public_id: string;
     __v: number;
   }
+
+  interface Tag {
+    _id: string;
+    name: string;
+    slug: string;
+    description: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  }
+  
+
+  interface Coupon {
+    _id: string;
+    code: string;
+    courses: string[];  // Mảng ID khóa học nếu có (có thể là mảng string nếu chỉ chứa ID)
+    appliesToAllCourses: boolean;
+    status: boolean;
+    startTime: string;  // Có thể sử dụng Date nếu cần
+    endTime: string;  // Có thể sử dụng Date nếu cần
+    isUsed: boolean;
+    maxUses: number;
+    courseAccessDuration: number;
+    createdAt: string;  // Có thể sử dụng Date nếu cần
+    updatedAt: string;  // Có thể sử dụng Date nếu cần
+    __v: number;
+  }
+  

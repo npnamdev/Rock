@@ -18,7 +18,7 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 
 export default function ContentTagPage() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedUsers, setSelectedUsers] = useState<Role[]>([]);
+    const [selectedUsers, setSelectedUsers] = useState<Tag[]>([]);
     const [limit, setLimit] = useState(10);
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("10");
@@ -48,15 +48,15 @@ export default function ContentTagPage() {
     }, [searchTerm]);
 
     const { data, error, isLoading } = useSWR(
-        `https://api.rock.io.vn/api/v1/course-category?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`,
+        `https://api.rock.io.vn/api/v1/course-tags?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`,
         fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false }
     );
 
     const handleCreateUserGroup = async () => {
         try {
-            const response = await axios.post("https://api.rock.io.vn/api/v1/user-group", { name: groupName, description: groupDescription });
+            const response = await axios.post("https://api.rock.io.vn/api/v1/course-tags", { name: groupName, description: groupDescription });
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                mutate(`https://api.rock.io.vn/api/v1/course-tags?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
                 console.log('User group created successfully:', response);
             }
         } catch (error) {
@@ -78,9 +78,9 @@ export default function ContentTagPage() {
 
     const handleDeleteUserGroup = async (userGroupId: string) => {
         try {
-            const response = await axios.delete(`https://api.rock.io.vn/api/v1/user-group/${userGroupId}`);
+            const response = await axios.delete(`https://api.rock.io.vn/api/v1/course-tags/${userGroupId}`);
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                mutate(`https://api.rock.io.vn/api/v1/course-tags?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
                 console.log('User group deleted successfully:', response);
             }
         } catch (error) {
@@ -88,7 +88,8 @@ export default function ContentTagPage() {
         }
     }
 
-    const roles: Role[] = data?.data;
+
+    const roles: Tag[] = data?.data;
     const totalPages = data?.pagination?.totalPages;
     const totalUsers = data?.pagination?.totalUsers;
 
@@ -144,7 +145,7 @@ export default function ContentTagPage() {
                         <Input
                             className="w-[360px] px-5 pl-10"
                             type="text"
-                            placeholder="Tìm kiếm danh mục..."
+                            placeholder="Tìm kiếm thẻ..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
                         />
@@ -153,7 +154,7 @@ export default function ContentTagPage() {
                         <Dialog>
                             <DialogTrigger asChild>
                                 <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
-                                    <Plus size={15} color="#fff" /> Thêm danh mục
+                                    <Plus size={15} color="#fff" /> Thêm thẻ mới
                                 </Button>
                             </DialogTrigger>
                             <DialogContent>
@@ -177,8 +178,8 @@ export default function ContentTagPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold pl-5">
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={roles?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tên danh mục</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Khóa học</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tên thẻ</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Đường dẫn</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Ngày tạo</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Ngày cập nhật</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap"></TableHead>
@@ -192,7 +193,7 @@ export default function ContentTagPage() {
                                 </TableCell>
                             </TableRow>
                         ) : roles?.length > 0 ? (
-                            roles.map((role: Role, index: number) => (
+                            roles.map((role: Tag, index: number) => (
                                 <TableRow key={role._id}>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap pl-5">
                                         <Checkbox checked={selectedUsers.includes(role)} onCheckedChange={() => handleSelectUser(role)} />
@@ -202,7 +203,7 @@ export default function ContentTagPage() {
                                             <h3 className="font-bold text-[13px] capitalize">{role.name}</h3>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">28</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{role.slug}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.createdAt).subtract(10, 'days').calendar()}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.updatedAt).subtract(10, 'days').calendar()}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">

@@ -18,7 +18,7 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 
 export default function ContentTagPage() {
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedUsers, setSelectedUsers] = useState<Role[]>([]);
+    const [selectedUsers, setSelectedUsers] = useState<Coupon[]>([]);
     const [limit, setLimit] = useState(10);
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("10");
@@ -48,15 +48,15 @@ export default function ContentTagPage() {
     }, [searchTerm]);
 
     const { data, error, isLoading } = useSWR(
-        `https://api.rock.io.vn/api/v1/course-category?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`,
+        `https://api.rock.io.vn/api/v1/activation-codes?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`,
         fetcher, { revalidateIfStale: false, revalidateOnFocus: false, revalidateOnReconnect: false }
     );
 
     const handleCreateUserGroup = async () => {
         try {
-            const response = await axios.post("https://api.rock.io.vn/api/v1/user-group", { name: groupName, description: groupDescription });
+            const response = await axios.post("https://api.rock.io.vn/api/v1/activation-codes", { name: groupName, description: groupDescription });
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                mutate(`https://api.rock.io.vn/api/v1/activation-codes?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
                 console.log('User group created successfully:', response);
             }
         } catch (error) {
@@ -64,23 +64,11 @@ export default function ContentTagPage() {
         }
     }
 
-    // const handleUpdateUserGroup = async (userGroupId: string) => {
-    //     try {
-    //         const response = await axios.put(`https://api.rock.io.vn/api/v1/user-group/${userGroupId}`, { name: roleName });
-    //         if (response) {
-    //             mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
-    //             console.log('User group updated successfully:', response);
-    //         }
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // }
-
     const handleDeleteUserGroup = async (userGroupId: string) => {
         try {
-            const response = await axios.delete(`https://api.rock.io.vn/api/v1/user-group/${userGroupId}`);
+            const response = await axios.delete(`https://api.rock.io.vn/api/v1/activation-codes/${userGroupId}`);
             if (response) {
-                mutate(`https://api.rock.io.vn/api/v1/user-group?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
+                mutate(`https://api.rock.io.vn/api/v1/activation-codes?page=${currentPage}&limit=${limit}&search=${debouncedSearchTerm}`);
                 console.log('User group deleted successfully:', response);
             }
         } catch (error) {
@@ -88,10 +76,10 @@ export default function ContentTagPage() {
         }
     }
 
-    const roles: Role[] = data?.data;
+
+    const roles: Coupon[] = data?.data;
     const totalPages = data?.pagination?.totalPages;
     const totalUsers = data?.pagination?.totalUsers;
-
     const handleNext = () => { if (currentPage < data?.pagination?.totalPages) setCurrentPage(currentPage + 1); };
     const handlePrevious = () => { if (currentPage > 1) setCurrentPage(currentPage - 1); };
     const handleFirstPage = () => setCurrentPage(1);
@@ -177,10 +165,11 @@ export default function ContentTagPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold pl-5">
                                 <Checkbox onCheckedChange={handleSelectAllUsers} checked={roles?.every(user => selectedUsers.includes(user))} />
                             </TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tên danh mục</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Khóa học</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Ngày tạo</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Ngày cập nhật</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Mã kích hoạt</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Bắt đầu</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Kết thúc</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Trạng thái</TableHead>
+                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tình trạng</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap"></TableHead>
                         </TableRow>
                     </TableHeader>
@@ -192,19 +181,24 @@ export default function ContentTagPage() {
                                 </TableCell>
                             </TableRow>
                         ) : roles?.length > 0 ? (
-                            roles.map((role: Role, index: number) => (
+                            roles.map((role: Coupon, index: number) => (
                                 <TableRow key={role._id}>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap pl-5">
                                         <Checkbox checked={selectedUsers.includes(role)} onCheckedChange={() => handleSelectUser(role)} />
                                     </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className="flex items-center gap-2">
-                                            <h3 className="font-bold text-[13px] capitalize">{role.name}</h3>
+                                            <h3 className="font-bold text-[13px] capitalize">{role.code}</h3>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">28</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.createdAt).subtract(10, 'days').calendar()}</TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.updatedAt).subtract(10, 'days').calendar()}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.startTime).subtract(10, 'days').calendar()}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(role.endTime).subtract(10, 'days').calendar()}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
+                                        <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${role.status ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
+                                            {role.status ? "Hoạt động" : "Không hoạt động"}
+                                        </div>
+                                    </TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{role.isUsed ? "Đã sử dụng" : "Chưa sử dụng"}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <UserActionMenu options={menuOptions} userID={role?._id} />
                                     </TableCell>

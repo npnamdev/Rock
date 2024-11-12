@@ -14,7 +14,7 @@ export default function HeaderLayout() {
         "courses": "Danh sách khóa học",
         "categories": "Danh mục khoá học",
         "tags": "Thẻ khoá học",
-        "activate-course": "Mã kích hoạt khoá học",
+        "activate-course": "Mã kích hoạt",
         "user-accounts": "Danh sách người dùng",
         "account-groups": "Nhóm người dùng",
         "roles-permissions": "Vai trò và phân quyền",

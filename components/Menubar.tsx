@@ -26,7 +26,7 @@ const data = {
                 { title: "Danh sách khóa học", url: "/manage/courses" },
                 { title: "Danh mục khoá học", url: "/manage/categories" },
                 { title: "Thẻ khoá học", url: "/manage/tags" },
-                 { title: "Mã kích hoạt khoá học", url: "/manage/activate-course" },
+                { title: "Mã kích hoạt", url: "/manage/activate-course" },
             ],
         },
         {
@@ -105,7 +105,7 @@ export default function Menubar() {
         setOpenMobile,
         isMobile,
         toggleSidebar,
-      } = useSidebar()
+    } = useSidebar()
 
     React.useEffect(() => {
         data.navMain.forEach((item) => {
