@@ -29,7 +29,7 @@ export function CourseActionMenu({ options, courseID }: CourseActionMenuProps) {
           <EllipsisVertical strokeWidth={1.25} className="h-4 w-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent side="left" className="w-[110px] p-0">
+      <PopoverContent side="left" className="w-min p-0">
         <Command>
           <CommandList>
             <CommandEmpty>No options found.</CommandEmpty>
