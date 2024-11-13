@@ -24,7 +24,7 @@ const data = {
             icon: BookOpen,
             items: [
                 { title: "Danh sách khóa học", url: "/manage/courses" },
-                { title: "Danh mục khoá học", url: "/manage/categories" },
+                { title: "Thể loại khoá học", url: "/manage/categories" },
                 { title: "Thẻ khoá học", url: "/manage/tags" },
                 { title: "Mã kích hoạt", url: "/manage/activate-course" },
             ],
@@ -79,7 +79,7 @@ const data = {
             icon: CircleHelp,
             items: [
                 { title: "Mã kích hoạt", url: "/manage/activation-code" },
-                { title: "Mã chuyển nhượng", url: "/manage/transfer-code" },
+                { title: "Mã chuyển khoản", url: "/manage/transfer-code" },
             ],
         },
     ],
