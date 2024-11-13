@@ -14,7 +14,7 @@ import { CourseActionMenu } from "@/components/CourseActionMenu";
 import { DrawerDemo } from "@/components/DrawerDemo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Copy, DeleteIcon, EditIcon, EllipsisVertical, Plus, ScanEye, Search, SquarePen, Trash } from "lucide-react";
+import { Copy, DeleteIcon, EditIcon, EllipsisVertical, Plus, ScanEye, Search, SquarePen, Trash, Clipboard } from "lucide-react";
 import Image from "next/image";
 
 const courseOptions = [
@@ -103,9 +103,14 @@ const courses = [
     },
 ];
 
-
 export default function CoursesManagePage() {
     const menuOptions = [
+        {
+            icon: <Clipboard size={16} strokeWidth={1.5} />,
+            value: "copy",
+            label: "Sao chép ID khoá học",
+            action: (userGroupId: string) => console.log("Copy clicked", userGroupId)
+        },
         {
             icon: <Copy size={16} strokeWidth={1.5} />,
             value: "duplicate",
