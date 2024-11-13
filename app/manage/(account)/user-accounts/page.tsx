@@ -238,7 +238,7 @@ export default function UserAccountsPage() {
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className="flex items-center gap-2">
                                             <Image className="w-7 h-7 rounded-full" src="https://lineone.piniastudio.com/images/avatar/avatar-1.jpg" width={50} height={50} alt="dev" />
-                                            <h3 className="font-bold text-[13px] whitespace-nowrap">{user.username}</h3>
+                                            <h3 className="font-bold text-[13px] whitespace-nowrap mr-4">{user.username}</h3>
                                         </div>
                                     </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{user.email}</TableCell>
@@ -248,12 +248,8 @@ export default function UserAccountsPage() {
                                         </div>
                                     </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
-                          {user?.role?.name === 'admin'
-        ? 'Quản trị viên'
-        : user?.role?.name === 'user'
-        ? 'Người dùng'
-        : user?.role?.name}
-                                      </TableCell>
+                                        {user?.role?.name === 'admin' ? 'Quản trị viên' : user?.role?.name === 'user' ? 'Học viên' : user?.role?.name}
+                                    </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{moment(user.createdAt).subtract(10, 'days').calendar()}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <UserActionMenu options={menuOptions} userID={user?._id} />
