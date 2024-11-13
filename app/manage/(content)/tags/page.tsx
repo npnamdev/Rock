@@ -186,14 +186,18 @@ export default function ContentTagPage() {
                                         <Input className="w-full text-sm" type="text" placeholder="Nhập đường dẫn duy nhất, ví dụ: sql" value={slug} onChange={(event) => setSlug(event.target.value)} onBlur={handleSlugBlur} />
                                     </div>
                                 </div>
-                                <DialogFooter className="sm:justify-end border-t px-6 h-[60px] items-center">
-                                  <div class="w-full flex justify-end items-center">                                    
-                                    <DialogClose asChild>
-                                        <Button type="button" variant="secondary">Trở lại</Button>
-                                    </DialogClose>
-                                    <Button type="button" onClick={() => handleCreateTag()}>Tạo thẻ mới</Button>
-                                   </div>
-                                </DialogFooter>
+ <DialogFooter className="flex sm:justify-center border-t w-full h-[60px] items-center px-4">
+                    <div className="flex items-center h-full justify-end w-full gap-2">
+                        <DialogClose asChild>
+                            <Button variant="outline">Hủy bỏ</Button>
+                        </DialogClose>
+
+                        <Button onClick={handleCreateTag}>
+                            Tạo thẻ mới
+                        </Button>
+                    </div>
+                </DialogFooter>
+                              
                             </DialogContent>
                         </Dialog>
                     </div>
