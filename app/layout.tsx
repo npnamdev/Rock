@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
 import "./globals.css";
-const nunito = Nunito({ subsets: ["latin"] });
+// import { Nunito } from "next/font/google";
+// const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Trí Tuệ Nhân Tạo - Chìa Khóa Của Cuộc Cách Mạng Công Nghệ",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={nunito.className}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
