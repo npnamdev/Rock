@@ -218,7 +218,7 @@ export default function ContentTagPage() {
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <h3 className="font-bold text-[13px] capitalize">{role.name}</h3>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap max-w-[260px] flex items-center line-clamp-1">{role.description}</TableCell>
+                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">{role.description}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className={`rounded-lg px-2 py-1 text-xs w-min bg-[#FDEAB9] text-[#9B6327] font-bold`}> {role.slug}</div>
                                     </TableCell>
