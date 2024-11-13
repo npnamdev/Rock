@@ -168,29 +168,31 @@ export default function ContentTagPage() {
                                     <Plus size={15} color="#fff" /> Tạo thẻ khóa học mới
                                 </Button>
                             </DialogTrigger>
-                            <DialogContent className="w-full lg:w-[600px] p-0 rounded-xl">
+                            <DialogContent className="w-full lg:w-[600px] p-0 lg:rounded-xl">
                                 <DialogHeader className="border-b px-6 h-[60px] justify-center">
                                     <h5 className="text-[16px] font-bold">Tạo thẻ khóa học mới</h5>
                                 </DialogHeader>
                                 <div className="flex flex-col gap-5 w-full px-6 py-1">
                                     <div className="grid items-center gap-1.5 w-full">
                                         <Label className="font-semibold" htmlFor="name">*Tên thẻ khóa học</Label>
-                                        <Input className="w-full" type="text" placeholder="Nhập tên thẻ, ví dụ: SQL" value={name} onChange={handleNameChange} />
+                                        <Input className="w-full text-sm" type="text" placeholder="Nhập tên thẻ, ví dụ: SQL" value={name} onChange={handleNameChange} />
                                     </div>
                                     <div className="grid w-full items-center gap-1.5">
                                         <Label className="font-semibold" htmlFor="description">Mô tả thẻ khóa học</Label>
-                                        <Textarea className="w-full h-[100px] resize-none" placeholder="Mô tả ngắn gọn về thẻ, ví dụ: Học SQL để quản lý cơ sở dữ liệu" value={description} onChange={(event) => setDescription(event.target.value)} />
+                                        <Textarea className="w-full h-[100px] resize-none text-sm" placeholder="Mô tả ngắn gọn về thẻ, ví dụ: Học SQL để quản lý cơ sở dữ liệu" value={description} onChange={(event) => setDescription(event.target.value)} />
                                     </div>
                                     <div className="grid w-full items-center gap-1.5">
                                         <Label className="font-semibold" htmlFor="slug">*Đường dẫn thẻ khóa học</Label>
-                                        <Input className="w-full" type="text" placeholder="Nhập đường dẫn duy nhất, ví dụ: sql" value={slug} onChange={(event) => setSlug(event.target.value)} onBlur={handleSlugBlur} />
+                                        <Input className="w-full text-sm" type="text" placeholder="Nhập đường dẫn duy nhất, ví dụ: sql" value={slug} onChange={(event) => setSlug(event.target.value)} onBlur={handleSlugBlur} />
                                     </div>
                                 </div>
                                 <DialogFooter className="sm:justify-end border-t px-6 h-[60px] items-center">
+                                  <div class="w-full flex justify-end items-center">                                    
                                     <DialogClose asChild>
                                         <Button type="button" variant="secondary">Trở lại</Button>
                                     </DialogClose>
                                     <Button type="button" onClick={() => handleCreateTag()}>Tạo thẻ mới</Button>
+                                   </div>
                                 </DialogFooter>
                             </DialogContent>
                         </Dialog>
