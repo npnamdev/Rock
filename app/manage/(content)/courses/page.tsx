@@ -109,25 +109,25 @@ export default function CoursesManagePage() {
         {
             icon: <Copy size={16} strokeWidth={1.5} />,
             value: "duplicate",
-            label: "Nhân bản",
+            label: "Nhân bản khoá học",
             action: (userGroupId: string) => console.log("Duplicate clicked", userGroupId)
         },
         {
             icon: <ScanEye size={16} strokeWidth={1.5} />,
             value: "details",
-            label: "Chi tiết",
+            label: "Chi tiết khoá học",
             action: (userGroupId: string) => console.log("Details clicked", userGroupId)
         },
         {
             icon: <SquarePen size={16} strokeWidth={1.5} />,
             value: "edit",
-            label: "Chỉnh sửa",
+            label: "Chỉnh sửa khoá học",
             action: (userGroupId: string) => console.log("Update clicked", userGroupId)
         },
         {
             icon: <Trash size={16} strokeWidth={1.5} />,
             value: "delete",
-            label: "Xóa",
+            label: "Xóa khoá học",
             action: (userGroupId: string) => console.log("Delete clicked", userGroupId)
         },
     ];
@@ -141,23 +141,8 @@ export default function CoursesManagePage() {
                         <Search className="absolute left-3 text-gray-600" size={18} strokeWidth={1.5} />
                         <Input className="w-[340px] px-5 pl-10" type="text" placeholder="Tìm kiếm khóa học..." />
                     </div>
-                    <DrawerDemo />
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <Button variant="outline">Edit</Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-full h-full sm:rounded-none border">
-                            <DialogHeader>
-                                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                                <DialogDescription>
-                                    This action cannot be undone. This will permanently delete your account
-                                    and remove your data from our servers.
-                                </DialogDescription>
-                            </DialogHeader>
-                        </DialogContent>
-                    </Dialog>
-
                     <ComboboxDemo data={courseOptions} optionDefault="all_courses" />
+                    <DrawerDemo />                  
                     {/* <ComboboxDemo data={categoryOptions} optionDefault="all" /> */}
                 </div>
                 <div className="flex items-center gap-2">
