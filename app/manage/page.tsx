@@ -1,4 +1,5 @@
 import { BarChatDemo } from "@/components/BarChatDemo";
+import { BarChatDemo2 } from "@/components/BarChatDemo2";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function DashBoardPage() {
@@ -10,7 +11,10 @@ export default function DashBoardPage() {
         <Skeleton className="aspect-video rounded-xl bg-white shadow border" />
         <Skeleton className="aspect-video rounded-xl bg-white shadow border" />
       </div>
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-2 lg:gap-4">
       <BarChatDemo />
+      <BarChatDemo2 />
+      </div>
     </div>
   );
 }
