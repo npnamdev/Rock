@@ -21,7 +21,7 @@ export function ComboboxDemo({ data, optionDefault = "" }: ComboboxDemoProps) {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-[170px] justify-between px-3"
+                    className="w-[150px] whitespace-nowrap justify-between px-3"
                 >
                     {value
                         ? data.find((item) => item.value === value)?.label
@@ -29,14 +29,14 @@ export function ComboboxDemo({ data, optionDefault = "" }: ComboboxDemoProps) {
                     <ChevronsUpDown className="opacity-50 w-2 h-2" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[170px] p-0">
+            <PopoverContent className="w-[150px] whitespace-nowrap p-0">
                 <Command>
                     <CommandList>
                         <CommandEmpty>No option found.</CommandEmpty>
                         <CommandGroup>
                             {data.map((item) => (
                                 <CommandItem
-                                    className="px-2"
+                                    className="px-2 whitespace-nowrap"
                                     key={item.value}
                                     value={item.value}
                                     onSelect={(currentValue) => {

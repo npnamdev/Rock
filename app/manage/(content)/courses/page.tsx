@@ -7,21 +7,16 @@ import { CourseActionMenu } from "@/components/CourseActionMenu";
 import { DrawerDemo } from "@/components/DrawerDemo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Copy, Plus, ScanEye, Search, SquarePen, Trash } from "lucide-react";
+import { Clipboard, Copy, Plus, ScanEye, Search, SquarePen, Trash } from "lucide-react";
 import Image from "next/image";
 import useSWR from "swr";
 import axios from 'axios';
 import { mutate } from "swr";
 import { toast } from "sonner";
 import slugify from 'slugify';
+import copy from 'clipboard-copy';
 
-const courseOptions = [
-    { value: "all_courses", label: "Tất cả khóa học" },
-    { value: "free_courses", label: "Khóa học miễn phí" },
-    { value: "paid_courses", label: "Khóa học trả phí" },
-    { value: "popular_courses", label: "Khóa học phổ biến" },
-    { value: "new_courses", label: "Khóa học mới" },
-];
+
 
 export default function CoursesManagePage() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -55,7 +50,7 @@ export default function CoursesManagePage() {
 
     const courses: Course[] = data?.data;
 
-    const handleDeleteTag = async (tagId: string) => {
+    const handleDeleteItem = async (tagId: string) => {
         try {
             const res = await axios.delete(`https://api.rock.io.vn/api/v1/courses/${tagId}`);
             if (res) {
@@ -67,30 +62,52 @@ export default function CoursesManagePage() {
         }
     }
 
+
+    const courseOptions = [
+        { value: "all_courses", label: "Tất cả khóa học" },
+        { value: "single_course", label: "Khóa đơn" },
+        { value: "combo_course", label: "Khóa combo" },
+        { value: "membership", label: "Membership" },
+    ];
+
+    const copyToClipboardById = (id: string) => {
+        copy(`#${id}`).then(() => {
+            toast.success(`Đã sao chép Id: ${id}`);
+        }).catch((error) => {
+            toast.error("Đã xảy ra lỗi khi sao chép.");
+        });
+    }
+
     const menuOptions = [
+        {
+            icon: <Clipboard size={16} strokeWidth={1.5} />,
+            value: "copy",
+            label: "Copy ID khóa học",
+            action: (id: string) => copyToClipboardById(id)
+        },
         {
             icon: <Copy size={16} strokeWidth={1.5} />,
             value: "duplicate",
-            label: "Nhân bản",
-            action: (userGroupId: string) => console.log("Duplicate clicked", userGroupId)
+            label: "Nhân bản khóa học",
+            action: (id: string) => toast.error(`Tính năng đang được phát triển :))`)
         },
         {
             icon: <ScanEye size={16} strokeWidth={1.5} />,
             value: "details",
-            label: "Chi tiết",
-            action: (userGroupId: string) => console.log("Details clicked", userGroupId)
+            label: "Chi tiết khóa học",
+            action: (id: string) => toast.error(`Tính năng đang được phát triển :))`)
         },
         {
             icon: <SquarePen size={16} strokeWidth={1.5} />,
             value: "edit",
-            label: "Chỉnh sửa",
-            action: (userGroupId: string) => console.log("Update clicked", userGroupId)
+            label: "Chỉnh sửa khóa học",
+            action: (id: string) => toast.error(`Tính năng đang được phát triển :))`)
         },
         {
             icon: <Trash size={16} strokeWidth={1.5} />,
             value: "delete",
-            label: "Xóa",
-            action: (tagId: string) => handleDeleteTag(tagId)
+            label: "Xóa khóa học",
+            action: (id: string) => handleDeleteItem(id)
         },
     ];
 
@@ -100,27 +117,15 @@ export default function CoursesManagePage() {
                 <div className="flex items-center gap-2">
                     <div className="relative md:flex items-center hidden">
                         <Search className="absolute left-3 text-gray-600" size={18} strokeWidth={1.5} />
-                        <Input className="w-[340px] px-5 pl-10" type="text" placeholder="Tìm kiếm khóa học..." />
+                        <Input className="w-[380px] px-5 pl-10" type="text" placeholder="Tìm kiếm khóa học..." />
                     </div>
-                    <DrawerDemo />
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <Button variant="outline">Edit</Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-full h-full sm:rounded-none border">
-                            <DialogHeader>
-                                <DialogTitle>Are you absolutely sure?</DialogTitle>
-                                <DialogDescription>
-                                    This action cannot be undone. This will permanently delete your account
-                                    and remove your data from our servers.
-                                </DialogDescription>
-                            </DialogHeader>
-                        </DialogContent>
-                    </Dialog>
-
                     <ComboboxDemo data={courseOptions} optionDefault="all_courses" />
+                    <DrawerDemo />
                 </div>
                 <div className="flex items-center gap-2">
+                    <Button className="lg:hidden" variant="outline" size="icon">
+                        <Search />
+                    </Button>
                     <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
                         <Plus size={15} color="#fff" /> <span className="hidden md:flex"> Thêm khóa học </span>
                     </Button>

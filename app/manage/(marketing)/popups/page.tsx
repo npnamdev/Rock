@@ -154,7 +154,7 @@ export default function PopupPage() {
                                     <Plus size={15} color="#fff" /> Tạo popup mới
                                 </Button>
                             </DialogTrigger>
-                            <DialogContent className="w-[600px] p-0 rounded-xl">
+                            <DialogContent className="lg:w-[600px] p-0 lg:rounded-xl">
                                 <DialogHeader className="border-b px-6 h-[60px] justify-center">
                                     <h5 className="text-[16px] font-bold">Tạo Popup mới</h5>
                                 </DialogHeader>
@@ -176,7 +176,7 @@ export default function PopupPage() {
                                     <DialogClose asChild>
                                         <Button type="button" variant="secondary">Trở lại</Button>
                                     </DialogClose>
-                                    <Button type="button" onClick={() => handleCreateTag()}>Tạo thẻ mới</Button>
+                                    <Button type="button" onClick={() => handleCreateTag()}>Tạo popup mới</Button>
                                 </DialogFooter>
                             </DialogContent>
                         </Dialog>
@@ -188,7 +188,6 @@ export default function PopupPage() {
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap pl-6">#</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Tiêu đề</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Kích thước</TableHead>
-                            <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Đối tượng</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Trạng thái</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Bắt đầu</TableHead>
                             <TableHead className="text-black px-4 h-[50px] font-bold text-[13px] whitespace-nowrap">Kết thúc</TableHead>
@@ -206,9 +205,8 @@ export default function PopupPage() {
                                         <h3 className="font-bold text-[13px] capitalize">{role.title}</h3>
                                     </TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
-                                        <div className={`rounded-lg px-2 py-1 text-xs w-min bg-[#FDEAB9] text-[#9B6327] font-bold`}> {role.size}</div>
+                                        <div className={`rounded-lg px-2 py-1 text-xs w-min bg-[#FDEAB9] text-[#9B6327] font-bold capitalize`}> {role.size}</div>
                                     </TableCell>
-                                    <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap max-w-[280px] line-clamp-1">{role.targetAudience === "all" ? "Tất cả" : role.targetAudience === "registered" ? "Đã đăng ký" : role.targetAudience === "unregistered" ? "Chưa đăng ký" : ""}</TableCell>
                                     <TableCell className="h-[50px] px-4 cursor-pointer whitespace-nowrap">
                                         <div className={`rounded-lg px-2 py-1 text-xs w-min text-primary-foreground ${role.isActive ? 'bg-[#3eca65]' : 'bg-[#f45d5d]'}`}>
                                             {role.isActive ? "Hoạt động" : "Không hoạt động"}
