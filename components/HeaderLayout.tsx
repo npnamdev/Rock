@@ -24,7 +24,7 @@ export default function HeaderLayout() {
     const segmentLabels: Record<string, string> = {
         "manage": "Quản lý",
         "courses": "Danh sách khóa học",
-        "categories": "Danh mục khoá học",
+        "categories": "Thể loại khoá học",
         "tags": "Thẻ khoá học",
         "activate-course": "Mã kích hoạt",
         "user-accounts": "Danh sách người dùng",
