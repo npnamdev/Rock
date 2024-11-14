@@ -113,20 +113,6 @@ export default function ContentTagPage() {
     const handleLastPage = () => setCurrentPage(data?.pagination?.totalPages);
 
     const handleLimitChange = (newLimit: any) => { setLimit(newLimit); setCurrentPage(1); };
-    const handleSelectUser = (user: any) => {
-        setSelectedUsers((prevSelected: any) =>
-            prevSelected.includes(user) ? prevSelected.filter((u: any) => u !== user) : [...prevSelected, user]
-        );
-    };
-
-    const handleSelectAllUsers = () => {
-        const allSelected = roles.every((user: any) => selectedUsers.includes(user));
-        const updatedSelectedUsers = allSelected
-            ? selectedUsers.filter((u) => !roles.includes(u))
-            : Array.from(new Set([...selectedUsers, ...roles]));
-        setSelectedUsers(updatedSelectedUsers);
-    };
-
 
     const itemsPerPageOptions = [
         { value: "5", label: "5", action: () => handleLimitChange(5) },

@@ -99,3 +99,37 @@ interface Permissions {
     __v: number;
   }
   
+
+  interface Popup {
+    _id: string;
+    title: string;                          // Tiêu đề của popup
+    content: string;                        // Nội dung của popup
+    size: 'small' | 'medium' | 'large';     // Kích thước popup
+    isActive: boolean;                      // Trạng thái hiển thị popup (đang hoạt động hay không)
+    startTime: string;                      // Thời gian bắt đầu hiển thị popup (theo định dạng ISO 8601)
+    endTime: string;                        // Thời gian kết thúc hiển thị popup (theo định dạng ISO 8601)
+    showOnPageLoad: {
+      interval: number;                     // Thời gian giữa các lần popup hiển thị (tính bằng mili giây)
+      enabled: boolean;                     // Chế độ hiển thị popup khi tải trang
+    };
+    targetAudience: 'unregistered' | 'registered' | 'all'; // Đối tượng mục tiêu (người dùng đã đăng ký, chưa đăng ký hoặc tất cả)
+    createdAt: string;  // Có thể sử dụng Date nếu cần
+    updatedAt: string;  // Có thể sử dụng Date nếu cần
+    __v: number;
+  }
+
+  interface Course {
+    _id: string;
+    title: string;
+    description: string;
+    price: number;
+    isActive: boolean;
+    slug: string;
+    status: "selling" | "out_of_stock"; // Modify according to other status values you might have
+    chapters: any[]; // Define a more specific type for chapters if available
+    image: string;
+    createdAt: string; // or Date, depending on how you want to handle date formats
+    updatedAt: string; // or Date, same as above
+    __v: number;
+  }
+  
