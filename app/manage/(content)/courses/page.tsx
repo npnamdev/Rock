@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ComboboxDemo } from "@/components/ComboboxDemo";
 import { CourseActionMenu } from "@/components/CourseActionMenu";
 import { DrawerDemo } from "@/components/DrawerDemo";
@@ -120,15 +119,13 @@ export default function CoursesManagePage() {
                         <Input className="w-[380px] px-5 pl-10" type="text" placeholder="Tìm kiếm khóa học..." />
                     </div>
                     <ComboboxDemo data={courseOptions} optionDefault="all_courses" />
-                    <DrawerDemo />
                 </div>
                 <div className="flex items-center gap-2">
                     <Button className="lg:hidden" variant="outline" size="icon">
                         <Search />
                     </Button>
-                    <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
-                        <Plus size={15} color="#fff" /> <span className="hidden md:flex"> Thêm khóa học </span>
-                    </Button>
+                    
+                    <DrawerDemo />
                 </div>
             </div>
             <div className="grid auto-rows-min gap-3 md:gap-4 grid-cols-1 md:grid-cols-2">

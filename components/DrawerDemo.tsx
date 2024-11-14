@@ -67,7 +67,9 @@ export function DrawerDemo() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline">Drawer</Button>
+        <Button className="border flex gap-1 px-3 font-semibold text-[13.5px]">
+          <Plus size={15} color="#fff" /> <span className="hidden md:flex"> Thêm khóa học </span>
+        </Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
@@ -107,7 +109,7 @@ export function DrawerDemo() {
               </Button>
             </div>
             <div className="mt-3 h-[120px]">
-             đào tạo
+              đào tạo
             </div>
           </div>
           <DrawerFooter>
