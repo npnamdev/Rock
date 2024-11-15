@@ -6,7 +6,7 @@ import { CourseActionMenu } from "@/components/CourseActionMenu";
 import { DrawerDemo } from "@/components/DrawerDemo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Clipboard, Copy, Plus, ScanEye, Search, SquarePen, Trash } from "lucide-react";
+import { Clipboard, Copy, Database, Plus, ScanEye, Search, SquarePen, Trash } from "lucide-react";
 import Image from "next/image";
 import useSWR from "swr";
 import axios from 'axios';
@@ -60,7 +60,6 @@ export default function CoursesManagePage() {
             console.error('Error:', error);
         }
     }
-
 
     const courseOptions = [
         { value: "all_courses", label: "Tất cả khóa học" },
@@ -124,36 +123,42 @@ export default function CoursesManagePage() {
                     <Button className="lg:hidden" variant="outline" size="icon">
                         <Search />
                     </Button>
-                    
                     <DrawerDemo />
                 </div>
             </div>
-            <div className="grid auto-rows-min gap-3 md:gap-4 grid-cols-1 md:grid-cols-2">
+            <div>
                 {isLoading ? (
-                    <p>Đang tải...</p>
+                    <div className="flex h-[250px] bg-white w-full flex-col items-center gap-3 justify-center rounded-md border shadow-md font-bold text-sm">
+                        <Database strokeWidth={1.5} className="text-gray-400" />
+                        Đang tải...
+                    </div>
                 ) : courses?.length > 0 ? (
-                    courses.map((course) => (
-                        <div
-                            key={course._id}
-                            className="bg-white grid cursor-pointer grid-cols-[150px_auto_60px] md:grid-cols-[175px_auto_60px] items-center gap-2 rounded-md border shadow md:shadow-lg"
-                        >
-                            <div className="m-2.5">
-                                <Image className="w-full rounded-lg shadow" src={course.image} width={180} height={120} alt={course.title} />
-                            </div>
+                    <div className="grid auto-rows-min gap-3 md:gap-4 grid-cols-1 md:grid-cols-2">
+                        {
+                            courses.map((course) => (
+                                <div
+                                    key={course._id}
+                                    className="bg-white grid cursor-pointer grid-cols-[150px_auto_60px] md:grid-cols-[175px_auto_60px] items-center gap-2 rounded-md border shadow md:shadow-lg"
+                                >
+                                    <div className="m-2.5">
+                                        <Image className="w-full rounded-lg shadow" src={course.image} width={180} height={120} alt={course.title} />
+                                    </div>
 
-                            <div className="flex flex-col gap-1.5 text-sm">
-                                <h5 className="m-0 font-bold line-clamp-1">{course.title}</h5>
-                                <p className="m-0 line-clamp-1 md:line-clamp-2 text-gray-500">{course.description}</p>
-                                <p className="m-0">{course.price}</p>
-                            </div>
+                                    <div className="flex flex-col gap-1.5 text-sm">
+                                        <h5 className="m-0 font-bold line-clamp-1">{course.title}</h5>
+                                        <p className="m-0 line-clamp-1 md:line-clamp-2 text-gray-500">{course.description}</p>
+                                        <p className="m-0">{course.price}</p>
+                                    </div>
 
-                            <div className="flex items-center justify-center">
-                                <CourseActionMenu courseID={course._id} options={menuOptions} />
-                            </div>
-                        </div>
-                    ))
+                                    <div className="flex items-center justify-center">
+                                        <CourseActionMenu courseID={course._id} options={menuOptions} />
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
                 ) : (
-                    <p>Không có thẻ nào </p>
+                    <div className="flex h-[250px] w-full flex-col items-center justify-center rounded-md border shadow-md font-bold text-sm">Không có khóa học nào</div>
                 )}
             </div>
         </div>
