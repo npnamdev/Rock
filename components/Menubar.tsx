@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { CircleHelp, BadgeCheck, Bell, BookOpen, UsersRound, ChevronRight, ChevronsUpDown, ShoppingCart, CreditCard, Folder, Forward, SlidersVertical, ChartBarDecreasing, LogOut, GitBranch, MoreHorizontal, SwatchBook, Package, Settings, Sparkles, LayoutGrid, Trash2 } from "lucide-react";
+import { CircleHelp, BadgeCheck, Bell, BookOpen, UsersRound, ChevronRight, ChevronsUpDown, ShoppingCart, CreditCard, Folder, Forward, SlidersVertical, ChartBarDecreasing, LogOut, GitBranch, MoreHorizontal, SwatchBook, Package, Settings, Sparkles, LayoutGrid, Trash2, Palette } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -68,6 +68,21 @@ const data = {
                 { title: "Thanh toán đại lý", url: "/manage/affiliate-payments" },
             ],
         },
+{
+    title: "Tùy chỉnh giao diện",
+    url: "#",
+    icon: Palette, // Thay bằng biểu tượng phù hợp
+    items: [
+        { title: "Header", url: "/customize/header" },
+        { title: "Hero Section", url: "/customize/hero" },
+        { title: "Danh mục khóa học", url: "/customize/course-categories" },
+        { title: "Danh sách khóa học", url: "/customize/course-list" },
+        { title: "Giới thiệu", url: "/customize/about" },
+        { title: "Testimonials", url: "/customize/testimonials" },
+        { title: "Đối tác", url: "/customize/partners" },
+        { title: "Footer", url: "/customize/footer" },
+    ],
+},
         {
             title: "Quản lý thư viện",
             url: "/manage/liblarys",
