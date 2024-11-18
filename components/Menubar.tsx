@@ -165,9 +165,9 @@ export default function Menubar() {
         if (accessToken) {
             router.push('/login');
             localStorage.removeItem('accessToken');
-            toast.success("Đăng xuất thành công");
+            //toast.success("Đăng xuất thành công");
         } else {
-            toast.error("Không có thông tin đăng nhập để đăng xuất");
+            //toast.error("Không có thông tin đăng nhập để đăng xuất");
         }
     };
 
@@ -345,7 +345,7 @@ export default function Menubar() {
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>
+                               <DropdownMenuItem onClick={() > logoutUser()}>
                                     <LogOut />
                                     Đăng xuất
                                 </DropdownMenuItem>
