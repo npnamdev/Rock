@@ -1,10 +1,34 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+"use client";
+import Link from "next/link";
+import React, { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useRouter } from 'next/navigation';
+import { loginUser } from "@/services/api";
+import { toast } from 'sonner';
 
 export default function LoginPage() {
+    const [email, setEmail] = useState('root@doman.com');
+    const [password, setPassword] = useState('root123456');
+    const router = useRouter();
+
+    const handleLogin = async () => {
+        try {
+            const res = await loginUser(email, password);
+            console.log("check login", res);
+
+            if (res) {
+                router.push('/');
+                toast.success("Đăng nhập thành công");
+            } else {
+                toast.error("Đăng nhập thất bại");
+            }
+        } catch (error) {
+            toast.error("Lỗi hệ thống!");
+        }
+    };
 
     return (
         <div className="flex bg-gray-100 h-dvh lg:h-screen w-full items-center justify-center px-4">
@@ -19,12 +43,7 @@ export default function LoginPage() {
                     <div className="grid gap-4">
                         <div className="grid gap-2">
                             <Label htmlFor="email">Email</Label>
-                            <Input
-                                id="email"
-                                type="email"
-                                placeholder="m@example.com"
-                                required
-                            />
+                            <Input id="email" type="email" placeholder="m@example.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
                         </div>
                         <div className="grid gap-2">
                             <div className="flex items-center">
@@ -33,9 +52,9 @@ export default function LoginPage() {
                                     Forgot your password?
                                 </Link>
                             </div>
-                            <Input id="password" type="password" required />
+                            <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
-                        <Button type="submit" className="w-full">
+                        <Button className="w-full" onClick={() => handleLogin()}>
                             Login
                         </Button>
                         <Button variant="outline" className="w-full">
