@@ -165,7 +165,7 @@ export default function PopupPage() {
                                     </div>
                                     <div className="grid w-full items-center gap-1.5">
                                         <Label className="font-semibold" htmlFor="description">Mô tả thẻ khóa học</Label>
-                                        <Textarea className="w-full h-[100px] resize-none" placeholder="Mô tả ngắn gọn về thẻ, ví dụ: Học SQL để quản lý cơ sở dữ liệu" value={description} onChange={(event) => setDescription(event.target.value)} />
+                                        <Textarea className="w-full h-[100px] resize-none text-sm" placeholder="Mô tả ngắn gọn về thẻ, ví dụ: Học SQL để quản lý cơ sở dữ liệu" value={description} onChange={(event) => setDescription(event.target.value)} />
                                     </div>
                                     <div className="grid w-full items-center gap-1.5">
                                         <Label className="font-semibold" htmlFor="slug">*Đường dẫn thẻ khóa học</Label>
