@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { CircleHelp, BadgeCheck, Bell, BookOpen, UsersRound, ChevronRight, ChevronsUpDown, ShoppingCart, CreditCard, Folder, Forward, SlidersVertical, ChartBarDecreasing, LogOut, GitBranch, MoreHorizontal, SwatchBook, Package, Settings, Sparkles, LayoutGrid, Trash2, Palette } from "lucide-react";
+import { CircleHelp, BadgeCheck, Bell, BookOpen, UsersRound, ChevronRight, ChevronsUpDown, ShoppingCart, CreditCard, Folder, Forward, SlidersVertical, ChartBarDecreasing, LogOut, GitBranch, MoreHorizontal, SwatchBook, Package, Settings, Sparkles, LayoutGrid, Trash2, Palette, GalleryVerticalEnd, AudioWaveform, Command } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
@@ -68,21 +68,21 @@ const data = {
                 { title: "Thanh toán đại lý", url: "/manage/affiliate-payments" },
             ],
         },
-{
-    title: "Tùy chỉnh giao diện",
-    url: "#",
-    icon: Palette, // Thay bằng biểu tượng phù hợp
-    items: [
-        { title: "Header", url: "/customize/header" },
-        { title: "Hero Section", url: "/customize/hero" },
-        { title: "Danh mục khóa học", url: "/customize/course-categories" },
-        { title: "Danh sách khóa học", url: "/customize/course-list" },
-        { title: "Giới thiệu", url: "/customize/about" },
-        { title: "Testimonials", url: "/customize/testimonials" },
-        { title: "Đối tác", url: "/customize/partners" },
-        { title: "Footer", url: "/customize/footer" },
-    ],
-},
+        {
+            title: "Tùy chỉnh giao diện",
+            url: "#",
+            icon: Palette, // Thay bằng biểu tượng phù hợp
+            items: [
+                { title: "Header", url: "/customize/header" },
+                { title: "Hero Section", url: "/customize/hero" },
+                { title: "Danh mục khóa học", url: "/customize/course-categories" },
+                { title: "Danh sách khóa học", url: "/customize/course-list" },
+                { title: "Giới thiệu", url: "/customize/about" },
+                { title: "Testimonials", url: "/customize/testimonials" },
+                { title: "Đối tác", url: "/customize/partners" },
+                { title: "Footer", url: "/customize/footer" },
+            ],
+        },
         {
             title: "Quản lý thư viện",
             url: "/manage/liblarys",
@@ -103,10 +103,28 @@ const data = {
         { name: "Cài đặt hệ thống", url: "/manage/system-settings", icon: Settings },
         { name: "Tài nguyên trang web", url: "/manage/website-resources", icon: Package },
     ],
+    teams: [
+        {
+            name: "Acme Inc",
+            logo: GalleryVerticalEnd,
+            plan: "Enterprise",
+        },
+        {
+            name: "Acme Corp.",
+            logo: AudioWaveform,
+            plan: "Startup",
+        },
+        {
+            name: "Evil Corp.",
+            logo: Command,
+            plan: "Free",
+        },
+    ],
 };
 
 
 import { useSidebar } from "@/components/ui/sidebar"
+import { TeamSwitcher } from "./TeamSwitcher";
 
 export default function Menubar() {
     const pathname = usePathname();
@@ -139,14 +157,15 @@ export default function Menubar() {
 
     return (
         <Sidebar collapsible="icon">
-            <SidebarHeader className="px-5 bg-white flex justify-center h-[65px]">
-                <SidebarMenu>
+            <SidebarHeader className="px-3.5 border-b bg-white flex justify-center h-[65px]">
+                {/* <SidebarMenu>
                     <SidebarMenuItem onClick={() => setOpenMobile(false)}>
                         <Link href="/manage">
                             <Image src="/logo.svg" width={155} height={40} alt="Picture of the author" />
                         </Link>
                     </SidebarMenuItem>
-                </SidebarMenu>
+                </SidebarMenu> */}
+                <TeamSwitcher teams={data.teams} />
             </SidebarHeader>
             <SidebarContent className="px-2 bg-white gap-0">
                 <SidebarGroup>

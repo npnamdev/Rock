@@ -128,9 +128,9 @@ export default function CoursesManagePage() {
             </div>
             <div>
                 {isLoading ? (
-                    <div className="flex h-[250px] bg-white w-full flex-col items-center gap-3 justify-center rounded-md border shadow-md font-bold text-sm">
-                        <Database strokeWidth={1.5} className="text-gray-400" />
-                        Đang tải...
+                    <div className="text-gray-600 flex h-[250px] bg-white w-full flex-col items-center gap-4 justify-center rounded-md border shadow-md text-sm">
+                        <Database strokeWidth={1.5}/>
+                        Đang tải khóa học...
                     </div>
                 ) : courses?.length > 0 ? (
                     <div className="grid auto-rows-min gap-3 md:gap-4 grid-cols-1 md:grid-cols-2">
