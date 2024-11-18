@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link'
 import * as React from "react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbPage, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
@@ -65,6 +66,7 @@ export default function HeaderLayout() {
                     </BreadcrumbList>
                 </Breadcrumb>
             </div>
+<Link href="/login">logout</Link>
         </header>
     );
 }
