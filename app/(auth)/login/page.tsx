@@ -8,7 +8,7 @@ export default function LoginPage() {
 
     return (
         <div className="flex h-screen w-full items-center justify-center px-4">
-            <Card className="mx-auto max-w-sm">
+            <Card className="w-full mx-auto lg:max-w-sm">
                 <CardHeader>
                     <CardTitle className="text-2xl">Login</CardTitle>
                     <CardDescription>
