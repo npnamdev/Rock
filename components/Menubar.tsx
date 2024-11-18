@@ -7,10 +7,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { usePathname, useRouter } from 'next/navigation';
-import { toast } from 'sonner';
-
-
+import { usePathname } from 'next/navigation';
 
 const data = {
     user: { name: "Phương Nam", email: "root@domain.com", avatar: "https://lineone.piniastudio.com/images/avatar/avatar-6.jpg" },
@@ -129,18 +126,9 @@ import { useSidebar } from "@/components/ui/sidebar"
 import { TeamSwitcher } from "./TeamSwitcher";
 
 export default function Menubar() {
+    const { setOpenMobile } = useSidebar();
     const pathname = usePathname();
     const [openSubmenu, setOpenSubmenu] = React.useState<string | null>(null);
-
-    const {
-        state,
-        open,
-        setOpen,
-        openMobile,
-        setOpenMobile,
-        isMobile,
-        toggleSidebar,
-    } = useSidebar()
 
     React.useEffect(() => {
         data.navMain.forEach((item) => {
@@ -156,21 +144,6 @@ export default function Menubar() {
     const handleToggle = (title: string) => {
         setOpenSubmenu(prev => (prev === title ? null : title));
     };
-
-    const router = useRouter();
-
-
-    const logoutUser = () => {
-        //const accessToken = localStorage.getItem('accessToken');
-        //if (accessToken) {
-            router.push('/login');
-            //localStorage.removeItem('accessToken');
-            //toast.success("Đăng xuất thành công");
-        //} else {
-            //toast.error("Không có thông tin đăng nhập để đăng xuất");
-        //}
-    };
-
 
     return (
         <Sidebar collapsible="icon">
@@ -345,7 +318,7 @@ export default function Menubar() {
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
                                 <DropdownMenuSeparator />
-                               <DropdownMenuItem onClick={() > logoutUser()}>
+                                <DropdownMenuItem>
                                     <LogOut />
                                     Đăng xuất
                                 </DropdownMenuItem>
