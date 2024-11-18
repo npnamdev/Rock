@@ -1,6 +1,6 @@
-import { SettingsDialog } from "@/components/SettingsDialog";
+import SettingsDialog from "@/components/SettingsDialog";
 
-export function Page() {
+export default function RegisterPage() {
   return (
     <div className="flex h-svh items-center justify-center">
       <SettingsDialog />
