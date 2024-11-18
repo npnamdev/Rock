@@ -161,14 +161,14 @@ export default function Menubar() {
 
 
     const logoutUser = () => {
-        const accessToken = localStorage.getItem('accessToken');
-        if (accessToken) {
+        //const accessToken = localStorage.getItem('accessToken');
+        //if (accessToken) {
             router.push('/login');
-            localStorage.removeItem('accessToken');
+            //localStorage.removeItem('accessToken');
             //toast.success("Đăng xuất thành công");
-        } else {
+        //} else {
             //toast.error("Không có thông tin đăng nhập để đăng xuất");
-        }
+        //}
     };
 
 
