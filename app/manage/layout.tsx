@@ -7,21 +7,19 @@ import AdminRoute from "@/components/AdminRoute";
 
 export default function ManageLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
-            <body className={`overflow-hidden`}>
-                {/* <AdminRoute> */}
-                    <SidebarProvider className="text-black font-semibold">
-                        <Menubar />
-                        <SidebarInset className="bg-gray-100">
-                            <HeaderLayout />
-                            <div className="overflow-auto h-[calc(100dvh-60px)] ">
-                                {children}
-                            </div>
-                        </SidebarInset>
-                    </SidebarProvider>
-                {/* </AdminRoute> */}
-                <Toaster />
-            </body>
-        </html>
+        <>
+            <AdminRoute>
+                <SidebarProvider className="text-black font-semibold">
+                    <Menubar />
+                    <SidebarInset className="bg-gray-100">
+                        <HeaderLayout />
+                        <div className="overflow-auto h-[calc(100dvh-60px)] ">
+                            {children}
+                        </div>
+                    </SidebarInset>
+                </SidebarProvider>
+            </AdminRoute>
+            <Toaster />
+        </>
     )
 }

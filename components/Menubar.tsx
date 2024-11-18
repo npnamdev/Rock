@@ -1,14 +1,16 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import { CircleHelp, BadgeCheck, Bell, BookOpen, UsersRound, ChevronRight, ChevronsUpDown, ShoppingCart, CreditCard, Folder, Forward, SlidersVertical, ChartBarDecreasing, LogOut, GitBranch, MoreHorizontal, SwatchBook, Package, Settings, Sparkles, LayoutGrid, Trash2, Palette, GalleryVerticalEnd, AudioWaveform, Command } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuAction, SidebarMenuButton, SidebarMenuItem, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem } from "@/components/ui/sidebar";
 import Link from "next/link";
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+
+
 
 const data = {
     user: { name: "Phương Nam", email: "root@domain.com", avatar: "https://lineone.piniastudio.com/images/avatar/avatar-6.jpg" },
@@ -155,16 +157,24 @@ export default function Menubar() {
         setOpenSubmenu(prev => (prev === title ? null : title));
     };
 
+    const router = useRouter();
+
+
+    const logoutUser = () => {
+        const accessToken = localStorage.getItem('accessToken');
+        if (accessToken) {
+            router.push('/login');
+            localStorage.removeItem('accessToken');
+            toast.success("Đăng xuất thành công");
+        } else {
+            toast.error("Không có thông tin đăng nhập để đăng xuất");
+        }
+    };
+
+
     return (
         <Sidebar collapsible="icon">
             <SidebarHeader className="px-3.5 border-b bg-white flex justify-center h-[65px]">
-                {/* <SidebarMenu>
-                    <SidebarMenuItem onClick={() => setOpenMobile(false)}>
-                        <Link href="/manage">
-                            <Image src="/logo.svg" width={155} height={40} alt="Picture of the author" />
-                        </Link>
-                    </SidebarMenuItem>
-                </SidebarMenu> */}
                 <TeamSwitcher teams={data.teams} />
             </SidebarHeader>
             <SidebarContent className="px-2 bg-white gap-0">
@@ -335,7 +345,7 @@ export default function Menubar() {
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => logoutUser()}>
                                     <LogOut />
                                     Đăng xuất
                                 </DropdownMenuItem>

@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
@@ -16,11 +17,10 @@ export default function LoginPage() {
 
     const handleLogin = async () => {
         try {
-            const res = await loginUser(email, password);
-            console.log("check login", res);
-
+            const res: any = await loginUser(email, password);
             if (res) {
-                router.push('/');
+                router.push('/manage');
+                localStorage.setItem('accessToken', res.accessToken);
                 toast.success("Đăng nhập thành công");
             } else {
                 toast.error("Đăng nhập thất bại");
@@ -31,7 +31,7 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex bg-gray-100 h-dvh lg:h-screen w-full items-center justify-center px-4">
+        <div className="flex bg-gray-100 h-dvh lg:h-screen w-full items-center justify-center px-4 bg-[url('https://hachium.com/wp-content/uploads/2024/02/grid-1024x671.png')] bg-cover">
             <Card className="w-full mx-auto lg:max-w-sm">
                 <CardHeader>
                     <CardTitle className="text-2xl">Login</CardTitle>

@@ -10,26 +10,8 @@ const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     useEffect(() => {
         const checkAdminAccess = async () => {
             try {
-                const token = localStorage.getItem("token");
+                const token = localStorage.getItem("accessToken");
                 if (!token) { router.push('/login'); return; }
-
-                // const response = await fetch("https://api.example.com/getMe", {
-                //     method: "GET",
-                //     headers: { Authorization: `Bearer ${token}`, },
-                // });
-
-                // if (!response.ok) {
-                //     window.location.replace("/login");
-                //     return;
-                // }
-
-                // const user = await response.json();
-
-                // if (user.role !== "admin") {
-                //     window.location.replace("/forbidden");
-                //     return;
-                // }
-
                 setIsAuthorized(true);
             } catch (error) {
                 console.error("Error checking admin access:", error);
