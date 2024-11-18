@@ -30,8 +30,8 @@ const AdminRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     }, []);
 
     if (loading) {
-        return <div className="w-full h-dvh bg-blue-700 flex justify-center items-center text-white animate-spin">
-<Loader size={40} strokeWidth={1.75} />
+        return <div className="w-full h-dvh bg-blue-800 flex justify-center items-center text-white ">
+<Loader size={70} strokeWidth={1.75} className="animate-spin"/>
 </div>;
     }
 
