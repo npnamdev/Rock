@@ -11,30 +11,31 @@ import { useRouter } from 'next/navigation';
 import { registerUser } from '@/services/api';
 
 export default function RegisterPage() {
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const router = useRouter();
 
   const handleRegister = async () => {
-    toast.info("Tính năng đang được phát triển!");
+    if (!username && !email && !password && !confirmPassword) {
+      toast.error('Vui lòng nhập đủ các trường thông tin!');
+    }
 
-    // if (password !== confirmPassword) {
-    //     toast.error('Passwords do not match');
-    //     return;
-    // }
+    if (password !== confirmPassword) {
+      toast.error('Mật khẩu không trùng nhau!');
+      return;
+    }
 
-    // try {
-    //     const response = await registerUser(name, email, password);
-    //     console.log('Registration successful:', response);
-    //     if (response) {
-    //         router.push('/login');
-    //         toast.success("Registration successful. Please login to continue.");
-    //     }
-    // } catch (error) {
-    //     toast.error('Registration failed. Please try again.');
-    // }
+    try {
+      const res: any = await registerUser(username, email, password);
+      if (res && res.status == "success") {
+        toast.success("Đăng ký thành công");
+        router.push('/login');
+      }
+    } catch (error) {
+      toast.error('Registration failed. Please try again.');
+    }
   };
 
   return (
@@ -49,13 +50,13 @@ export default function RegisterPage() {
         <CardContent>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="name">Name</Label>
+              <Label htmlFor="name">Full Name</Label>
               <Input
                 id="name"
                 type="text"
                 placeholder="John Doe"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
             </div>

@@ -31,8 +31,8 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex bg-gray-100 h-dvh lg:h-screen w-full items-center justify-center px-4 bg-[url('https://hachium.com/wp-content/uploads/2024/02/grid-1024x671.png')] bg-cover">
-            <Card className="w-full mx-auto lg:max-w-sm">
+        <div className="flex bg-gray-100 h-dvh lg:h-screen w-full items-center justify-center px-4 ">
+            <Card className="w-full mx-auto lg:max-w-sm z-5">
                 <CardHeader>
                     <CardTitle className="text-2xl">Login</CardTitle>
                     <CardDescription>
