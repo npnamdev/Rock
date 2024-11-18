@@ -18,7 +18,7 @@ export default function LoginPage() {
     const handleLogin = async () => {
         try {
             const res: any = await loginUser(email, password);
-            if (res) {
+            if (res && res.status == "success") {
                 router.push('/manage');
                 localStorage.setItem('accessToken', res.accessToken);
                 toast.success("Đăng nhập thành công");
