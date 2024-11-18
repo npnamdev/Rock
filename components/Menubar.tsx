@@ -346,10 +346,8 @@ export default function Menubar() {
                                 </DropdownMenuGroup>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuItem>
-                                  <div onClick={logoutUser()}>
                                     <LogOut />
                                     Đăng xuất
-                                   </div>
                                 </DropdownMenuItem>
                             </DropdownMenuContent>
                         </DropdownMenu>
