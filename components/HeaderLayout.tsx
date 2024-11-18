@@ -43,7 +43,7 @@ export default function HeaderLayout() {
     return (
         <header className="flex h-[60px] shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b w-full px-2 sticky top-0 bg-white z-50">
             <div className="flex items-center gap-2 px-2.5">
-                <Button className="lg:hidden mr-1 w-8 h-8" variant="outline" size="icon" onClick={() => setOpenMobile(true)}>
+                <Button className="lg:hidden mr-1 w-8 h-8" variant="outline" size="icon" onClick={() => toggleSidebar()}>
                     <AlignLeft strokeWidth={1.5} />
                 </Button>
                 <Separator orientation="vertical" className="mx-1 h-4 block md:hidden" />
